@@ -25,10 +25,11 @@ jobs:
         if: ${{ hashFiles('release/manual-0195-signatures.json') != '' && hashFiles('release/manual-0195-staging.json') != '' }}
         run: |
           python tools/manual_0195.py finalize
+          cp release/manual-0195-final-payload.json release/payload.json
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add release/manual-0195-final-payload.json
-          git commit -m 'release: finalize Lumira 0.19.5 signed payload' || exit 0
+          git add release/manual-0195-final-payload.json release/payload.json
+          git commit -m 'release: promote Lumira 0.19.5 signed payload' || exit 0
           git push
       - name: Download Godot 4.3
         if: ${{ hashFiles('release/manual-0195-signatures.json') == '' }}
