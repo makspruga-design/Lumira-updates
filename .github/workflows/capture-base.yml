@@ -1,0 +1,26 @@
+name: Capture current Lumira base manifests
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/capture-base.yml']
+permissions:
+  contents: write
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download published 0.19.4 manifests
+        run: |
+          set -euo pipefail
+          mkdir -p release/base
+          curl -fL --retry 3 -o release/base/lumira-017-android-0.19.4.json https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.4/lumira-017-android.json
+          curl -fL --retry 3 -o release/base/lumira-017-windows-0.19.4.json https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.4/lumira-017-windows.json
+      - name: Commit public base manifests
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add release/base/*.json
+          git commit -m 'Capture public 0.19.4 manifests for OTA preparation'
+          git push
