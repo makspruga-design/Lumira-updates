@@ -1,3 +1,4 @@
+# release trigger: Lumira 0.19.5 scene hotfix
 name: Publish verified Lumira update
 on:
   push:
