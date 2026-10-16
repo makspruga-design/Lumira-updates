@@ -1,0 +1,6 @@
+{
+  "version": "0.19.5",
+  "version_code": 42,
+  "source_commit": "6454b9ac2ef1d0e86052d1ad5a95f90a03fb2554",
+  "purpose": "Force ReturnTravelState to instantiate with the main scene so Return Wings and save pillars actually run in installed OTA builds."
+}
