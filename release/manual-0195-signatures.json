@@ -1,6 +1,7 @@
 {
   "version": "0.19.5",
   "source_commit": "6454b9ac2ef1d0e86052d1ad5a95f90a03fb2554",
+  "promotion": true,
   "android_signature_b64": "h1gIJPumbZVZXilHFrwS30mE0nqDWEBxt+LuMQRpw0d2EfBPyskKpLdIxQXy+1jbReKxHhbr32q0CvnMO8v8nv7UrnfklkHa/SX/hIlaV57RSEKF2D1MWnMs8R/giCLN4IeHxO5knU28uA24wQGugAPPs+OlAgFZJm0+yglDe36EmnQMC7Tk6f2ffTGG8RjPMg1yXhvx/H7OOxMkIR9gZyUK6bYya6aXy69MpEnHmP3kRe1dHDDNdHCVUbyZ2mB6fZBPrfRjGVADaCcI13CudBnhpbkoSYyhM8nSndw5LIYLNCjlicND/Q0Z3cGS93kJGvmkqxMvS+u/0xeJwxhlgQ==",
   "windows_signature_b64": "ORc7+Miw4UBwX/pd6PhrylEIaodQKEic7tUqbX5F3OvjsEPrGvx0tuSrRhrg4sNGgQ3tDBlYW2TUzbTrD71KBKZYPVLfvkaXkfUnw4gf6jefzvB+cp6kaUpAQmtc8Yxm6GUTxon6JLbH7GxadWlOH58MCHWp4flVk7bDFGcHsQSscRk/mhSOoXzysbK+BJeHaAJKJdsxvDZ23DU/nHjPq0f+7O1+NF7uOF9IvLfwVFmqjn1mLQUxyqkQcrtVjbKCfe5yie/sBHaMxxVsDa56evBUCNN9PmyteovkQLl/Pde3xJx+cWrAQUiLwfRx89ORAr9yxNagE3ms9hDuCShCmg=="
 }
