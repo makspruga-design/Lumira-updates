@@ -1,0 +1,143 @@
+name: Prepare Lumira 0.19.5 scene hotfix
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'release/manual-0195-request.json'
+      - 'release/manual-0195-signatures.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: lumira-manual-0195
+  cancel-in-progress: false
+jobs:
+  build-or-finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install signing verifier
+        run: python -m pip install cryptography
+      - name: Finalize signed payload when signatures are present
+        if: ${{ hashFiles('release/manual-0195-signatures.json') != '' && hashFiles('release/manual-0195-staging.json') != '' }}
+        run: |
+          python tools/manual_0195.py finalize
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add release/manual-0195-final-payload.json
+          git commit -m 'release: finalize Lumira 0.19.5 signed payload' || exit 0
+          git push
+      - name: Download Godot 4.3
+        if: ${{ hashFiles('release/manual-0195-signatures.json') == '' }}
+        run: |
+          curl -L --fail --retry 3 -o /tmp/godot.zip https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
+          unzip -q /tmp/godot.zip -d /tmp/godot
+          chmod +x /tmp/godot/Godot_v4.3-stable_linux.x86_64
+      - name: Compile and verify patched main scene
+        if: ${{ hashFiles('release/manual-0195-signatures.json') == '' }}
+        run: |
+          set -euo pipefail
+          WORK=/tmp/lumira0195
+          mkdir -p "$WORK/scenes" "$WORK/scripts"
+          cat > "$WORK/project.godot" <<'EOF'
+          [application]
+          config/name="Lumira 0.19.5 OTA scene compiler"
+          [rendering]
+          renderer/rendering_method="gl_compatibility"
+          EOF
+          cat > "$WORK/scripts/game_3d.gd" <<'EOF'
+          extends Node3D
+          EOF
+          cat > "$WORK/scripts/player_3d.gd" <<'EOF'
+          extends CharacterBody3D
+          EOF
+          cat > "$WORK/scripts/return_travel_state.gd" <<'EOF'
+          extends Node
+          EOF
+          cat > "$WORK/scenes/main_3d.tscn" <<'EOF'
+          [gd_scene load_steps=4 format=3]
+
+          [ext_resource path="res://scripts/game_3d.gd" type="Script" id="1_game"]
+          [ext_resource path="res://scripts/player_3d.gd" type="Script" id="2_player"]
+          [ext_resource path="res://scripts/return_travel_state.gd" type="Script" id="3_return"]
+
+          [node name="Game" type="Node3D"]
+          script = ExtResource("1_game")
+
+          [node name="ReturnTravelState" type="Node" parent="."]
+          script = ExtResource("3_return")
+
+          [node name="WorldRoot" type="Node3D" parent="."]
+
+          [node name="Mobs" type="Node3D" parent="."]
+
+          [node name="Player" type="CharacterBody3D" parent="."]
+          position = Vector3(0, 0, 2)
+          script = ExtResource("2_player")
+
+          [node name="CameraRig" type="Node3D" parent="Player"]
+          position = Vector3(0, 0.75, 0)
+
+          [node name="Camera3D" type="Camera3D" parent="Player/CameraRig"]
+          position = Vector3(0, 8.9, 10.7)
+          rotation_degrees = Vector3(-40, 0, 0)
+          projection = 1
+          size = 11.2
+          current = true
+
+          [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+          rotation_degrees = Vector3(-52, -35, 0)
+          light_color = Color(1, 0.93, 0.81, 1)
+          light_energy = 0.72
+          shadow_enabled = true
+
+          [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+          [node name="UI" type="CanvasLayer" parent="."]
+          layer = 10
+          EOF
+          cat > "$WORK/compile.gd" <<'EOF'
+          extends SceneTree
+
+          func _init() -> void:
+              call_deferred("_run")
+
+          func _run() -> void:
+              var packed := load("res://scenes/main_3d.tscn") as PackedScene
+              if packed == null:
+                  push_error("main scene failed to load")
+                  quit(2)
+                  return
+              var err := ResourceSaver.save(packed, "res://compiled-main_3d.scn")
+              if err != OK:
+                  push_error("failed to save compiled scene: %s" % err)
+                  quit(3)
+                  return
+              var check := load("res://compiled-main_3d.scn") as PackedScene
+              var instance := check.instantiate()
+              if instance.get_node_or_null("ReturnTravelState") == null:
+                  push_error("ReturnTravelState missing from compiled scene")
+                  quit(4)
+                  return
+              if instance.get_node_or_null("WorldRoot") == null or instance.get_node_or_null("Player") == null:
+                  push_error("core scene nodes missing after compilation")
+                  quit(5)
+                  return
+              print("LUMIRA_0195_SCENE_OK")
+              instance.free()
+              quit(0)
+          EOF
+          /tmp/godot/Godot_v4.3-stable_linux.x86_64 --headless --path "$WORK" --script res://compile.gd
+          test -s "$WORK/compiled-main_3d.scn"
+          python tools/manual_0195.py prepare "$WORK/compiled-main_3d.scn"
+      - name: Save staging payload and digests
+        if: ${{ hashFiles('release/manual-0195-signatures.json') == '' }}
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add release/manual-0195-staging.json release/manual-0195-digests.json
+          git commit -m 'release: stage Lumira 0.19.5 scene hotfix' || exit 0
+          git push
