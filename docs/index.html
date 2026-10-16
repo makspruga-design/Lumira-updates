@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0d18" />
+  <meta name="description" content="Люмерия — атмосферная фэнтези RPG: исследуй мир, сражайся с волнами врагов и боссами, развивай героя и возвращай силу кристаллов." />
+  <title>Люмерия — фэнтези RPG</title>
+  <style>
+    :root{
+      --bg:#090b12;--bg2:#111527;--panel:rgba(21,25,43,.72);--panel2:rgba(13,16,29,.9);
+      --text:#f5f0df;--muted:#aba9b5;--gold:#e9c56a;--gold2:#a8792f;--violet:#8d73ff;--cyan:#62d4ff;
+      --line:rgba(233,197,106,.2);--shadow:0 30px 90px rgba(0,0,0,.45);--radius:26px;
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}
+    a{color:inherit;text-decoration:none} button,a{tap-highlight-color:transparent;-webkit-tap-highlight-color:transparent}
+    .noise{position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E")}
+    .wrap{width:min(1180px,calc(100% - 34px));margin:auto}
+    header{position:fixed;z-index:40;left:0;right:0;top:0;padding:14px 0;background:linear-gradient(180deg,rgba(6,7,12,.94),rgba(6,7,12,.4),transparent);backdrop-filter:blur(7px)}
+    nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+    .sigil{width:38px;height:38px;position:relative;filter:drop-shadow(0 0 12px rgba(141,115,255,.45))}
+    .sigil:before,.sigil:after{content:"";position:absolute;inset:7px;border:1px solid var(--gold);transform:rotate(45deg)}
+    .sigil:after{inset:12px;border-color:var(--violet);transform:rotate(0)}
+    .navlinks{display:flex;gap:24px;color:#d6d1c4;font-size:14px}.navlinks a{opacity:.8}.navlinks a:hover{opacity:1;color:var(--gold)}
+    .navcta{padding:11px 17px;border:1px solid var(--line);border-radius:999px;background:rgba(233,197,106,.08);font-size:14px}
+    .hero{min-height:100svh;display:grid;place-items:center;position:relative;padding:112px 0 72px;isolation:isolate}
+    .aurora{position:absolute;inset:-10%;z-index:-5;background:radial-gradient(circle at 18% 28%,rgba(73,57,148,.36),transparent 29%),radial-gradient(circle at 78% 30%,rgba(38,127,151,.18),transparent 25%),radial-gradient(circle at 50% 80%,rgba(131,72,55,.18),transparent 32%),linear-gradient(#0a0c15,#101424 50%,#080910)}
+    .moon{position:absolute;width:min(46vw,590px);aspect-ratio:1;border-radius:50%;right:-8%;top:5%;z-index:-4;background:radial-gradient(circle at 35% 34%,#d7d8ea 0 5%,#a6a7c0 18%,#565b7c 55%,#242943 78%);box-shadow:0 0 80px rgba(132,142,206,.2);opacity:.42}
+    .mountains{position:absolute;inset:auto 0 0;height:51%;z-index:-3;background:linear-gradient(146deg,transparent 0 44%,#111527 44.5% 55%,transparent 55.5%) 0 0/50% 100%,linear-gradient(35deg,transparent 0 46%,#0d1020 46.5% 58%,transparent 58.5%) 60% 0/58% 100%;opacity:.98}
+    .castle{position:absolute;right:8%;bottom:9%;width:260px;height:310px;z-index:-2;opacity:.6;filter:drop-shadow(0 25px 30px #000)}
+    .castle .keep{position:absolute;left:68px;bottom:0;width:124px;height:215px;background:linear-gradient(#1a2035,#0b0d16);clip-path:polygon(10% 0,90% 0,100% 100%,0 100%)}
+    .castle .tower{position:absolute;bottom:0;width:62px;height:170px;background:linear-gradient(#171c2d,#090b12)} .castle .tower.l{left:8px}.castle .tower.r{right:6px;height:190px}
+    .castle .tower:before,.castle .keep:before{content:"";position:absolute;left:-6px;right:-6px;top:-18px;height:24px;background:#171c2d;clip-path:polygon(0 100%,0 30%,15% 30%,15% 0,30% 0,30% 30%,45% 30%,45% 0,60% 0,60% 30%,75% 30%,75% 0,90% 0,90% 30%,100% 30%,100% 100%)}
+    .window{position:absolute;width:7px;height:18px;border-radius:6px 6px 2px 2px;background:#d7b859;box-shadow:0 0 18px #d7b859}.w1{left:34px;top:54px}.w2{left:94px;top:75px}.w3{left:34px;top:130px}.w4{right:25px;top:70px}
+    .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:60px}.eyebrow{display:flex;align-items:center;gap:12px;text-transform:uppercase;letter-spacing:.22em;font-size:12px;color:var(--gold)}.eyebrow:before{content:"";width:46px;height:1px;background:var(--gold)}
+    h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:clamp(64px,10vw,144px);line-height:.82;margin:22px 0 24px;letter-spacing:-.06em;text-shadow:0 8px 32px rgba(0,0,0,.7)}
+    .lead{max-width:680px;color:#c6c4cb;font-size:clamp(17px,2vw,21px);line-height:1.7}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:52px;padding:0 22px;border-radius:14px;font-weight:750;border:1px solid transparent;transition:.25s transform,.25s background,.25s border-color}.btn:hover{transform:translateY(-2px)}.primary{background:linear-gradient(135deg,#e7c46a,#a8772b);color:#171208;box-shadow:0 12px 38px rgba(191,143,47,.25)}.secondary{border-color:rgba(255,255,255,.16);background:rgba(12,14,24,.46);backdrop-filter:blur(8px)}
+    .hero-card{justify-self:end;width:min(100%,420px);padding:22px;border-radius:30px;background:linear-gradient(150deg,rgba(31,37,66,.78),rgba(13,15,26,.7));border:1px solid rgba(255,255,255,.1);box-shadow:var(--shadow);backdrop-filter:blur(14px);transform:translateY(24px)}
+    .crystal{height:250px;position:relative;display:grid;place-items:center;overflow:hidden;border-radius:22px;background:radial-gradient(circle at 50% 40%,rgba(118,87,255,.28),transparent 34%),linear-gradient(160deg,#15192c,#0b0d17)}
+    .crystal:before{content:"";width:96px;height:182px;background:linear-gradient(140deg,#b9aaff 0 12%,#6f57ef 28%,#362b88 60%,#b892ff 100%);clip-path:polygon(50% 0,88% 24%,72% 80%,50% 100%,22% 80%,10% 27%);box-shadow:0 0 50px #6f57ef;filter:drop-shadow(0 0 24px #7b64ff)}
+    .crystal:after{content:"";position:absolute;width:200px;height:30px;border:1px solid rgba(166,143,255,.55);border-radius:50%;bottom:28px;box-shadow:0 0 35px rgba(116,92,255,.35);animation:pulse 3s ease-in-out infinite}@keyframes pulse{50%{transform:scale(1.12);opacity:.45}}
+    .statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}.stat{padding:14px 10px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06);text-align:center}.stat b{display:block;font-family:Georgia,serif;color:var(--gold);font-size:22px}.stat span{font-size:11px;color:var(--muted)}
+    section{padding:96px 0;position:relative}.section-tag{color:var(--gold);font-size:12px;letter-spacing:.22em;text-transform:uppercase}.section-title{font-family:Georgia,serif;font-size:clamp(38px,6vw,72px);font-weight:500;line-height:1.03;margin:12px 0 18px;max-width:820px}.section-copy{color:var(--muted);font-size:18px;line-height:1.75;max-width:760px}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}.card{position:relative;min-height:290px;padding:28px;border-radius:var(--radius);background:linear-gradient(145deg,rgba(28,32,53,.75),rgba(11,13,22,.86));border:1px solid rgba(255,255,255,.075);overflow:hidden}.card:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-70px;bottom:-80px;background:radial-gradient(circle,rgba(141,115,255,.16),transparent 65%)}.icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:rgba(233,197,106,.09);border:1px solid var(--line);color:var(--gold);font-size:22px}.card h3{font-family:Georgia,serif;font-size:28px;font-weight:500;margin:54px 0 10px}.card p{color:var(--muted);line-height:1.65;margin:0}
+    .world{background:linear-gradient(180deg,transparent,#0d1020 18%,#0d1020 82%,transparent)}.world-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:center}.map{aspect-ratio:1.15;border-radius:32px;position:relative;overflow:hidden;background:radial-gradient(circle at 56% 44%,#3a344c 0 6%,transparent 7%),radial-gradient(ellipse at 48% 54%,#263345 0 24%,transparent 25%),radial-gradient(ellipse at 60% 40%,#3a492e 0 38%,#202b24 39% 46%,transparent 47%),linear-gradient(145deg,#142031,#0d1320);border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
+    .map:before{content:"";position:absolute;inset:8%;border:1px solid rgba(233,197,106,.22);border-radius:47% 53% 42% 58%/55% 41% 59% 45%;transform:rotate(-10deg);box-shadow:inset 0 0 70px rgba(0,0,0,.45)}.map:after{content:"◆";position:absolute;left:54%;top:41%;font-size:34px;color:var(--violet);text-shadow:0 0 25px #8d73ff}.pin{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 20px var(--gold)}.p1{left:34%;top:33%}.p2{left:69%;top:61%}.p3{left:43%;top:73%}
+    .timeline{display:grid;gap:14px;margin-top:32px}.step{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}.num{width:44px;height:44px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-family:Georgia,serif}.step h4{margin:1px 0 4px;font-size:18px}.step p{margin:0;color:var(--muted);line-height:1.55}
+    .bosses{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:42px}.boss{height:300px;border-radius:28px;padding:28px;display:flex;align-items:flex-end;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.07)}.boss:nth-child(1){background:radial-gradient(circle at 74% 28%,rgba(151,34,66,.32),transparent 24%),linear-gradient(135deg,#241622,#0b0c14)}.boss:nth-child(2){background:radial-gradient(circle at 74% 28%,rgba(99,78,220,.32),transparent 24%),linear-gradient(135deg,#19182d,#0b0c14)}.boss .silhouette{position:absolute;right:12%;top:8%;width:160px;height:180px;opacity:.55;filter:drop-shadow(0 15px 15px #000)}.spider{background:radial-gradient(circle at 50% 40%,#09090e 0 28%,transparent 29%),linear-gradient(30deg,transparent 46%,#09090e 47% 52%,transparent 53%),linear-gradient(-30deg,transparent 46%,#09090e 47% 52%,transparent 53%);border-radius:50%}.guardian{background:linear-gradient(90deg,transparent 38%,#09090e 39% 61%,transparent 62%),linear-gradient(#09090e 0 43%,transparent 44%);clip-path:polygon(38% 0,62% 0,68% 30%,86% 100%,60% 65%,50% 100%,40% 65%,14% 100%,32% 30%)}
+    .boss small{color:var(--gold);letter-spacing:.14em;text-transform:uppercase}.boss h3{font-family:Georgia,serif;font-size:30px;margin:7px 0 0;max-width:270px}
+    .release{padding-bottom:120px}.releasebox{padding:clamp(28px,6vw,64px);border-radius:34px;background:radial-gradient(circle at 80% 20%,rgba(105,79,229,.2),transparent 26%),linear-gradient(145deg,#1c2038,#0b0d16);border:1px solid rgba(233,197,106,.16);display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center;box-shadow:var(--shadow)}.releasebox h2{font-family:Georgia,serif;font-size:clamp(38px,5vw,66px);font-weight:500;margin:8px 0 16px}.releasebox p{color:var(--muted);font-size:17px;line-height:1.7;max-width:650px}.release-actions{display:flex;justify-content:flex-end;gap:12px;flex-wrap:wrap}
+    footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 0 40px;color:#777b8c;font-size:13px}.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.foot a:hover{color:var(--gold)}
+    .reveal{opacity:0;transform:translateY(24px);transition:.7s ease}.reveal.show{opacity:1;transform:none}
+    @media(max-width:900px){.navlinks{display:none}.hero-grid,.world-grid,.releasebox{grid-template-columns:1fr}.hero-card{justify-self:start;width:min(100%,520px)}.castle{right:-30px;opacity:.35}.features{grid-template-columns:1fr}.bosses{grid-template-columns:1fr}.release-actions{justify-content:flex-start}.map{max-width:620px}.hero{padding-top:100px}}
+    @media(max-width:560px){.wrap{width:min(100% - 24px,1180px)}header{padding:10px 0}.brand{font-size:13px}.navcta{padding:10px 13px}.hero{min-height:auto;padding:122px 0 72px}h1{font-size:64px}.moon{width:360px;right:-150px;top:20px}.hero-card{padding:14px;border-radius:22px}.crystal{height:210px}.features{margin-top:30px}.card{min-height:250px}.boss{height:260px}.section-title{font-size:42px}.section-copy{font-size:16px}.release-actions .btn{width:100%}.stat span{font-size:10px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.crystal:after{animation:none}.reveal{opacity:1;transform:none;transition:none}}
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <header>
+    <div class="wrap"><nav>
+      <a class="brand" href="#top"><span class="sigil"></span><span>Люмерия</span></a>
+      <div class="navlinks"><a href="#about">Об игре</a><a href="#world">Мир</a><a href="#bosses">Боссы</a><a href="#updates">Обновления</a></div>
+      <a class="navcta" href="#updates">Скачать</a>
+    </nav></div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="aurora"></div><div class="moon"></div><div class="mountains"></div>
+      <div class="castle"><div class="tower l"><i class="window w1"></i></div><div class="keep"><i class="window w2"></i><i class="window w3"></i></div><div class="tower r"><i class="window w4"></i></div></div>
+      <div class="wrap hero-grid">
+        <div class="reveal show">
+          <div class="eyebrow">Фэнтези RPG в разработке</div>
+          <h1>Люмерия</h1>
+          <p class="lead">Мир, где сила кристаллов угасает. Исследуй новые земли, отбивай волны врагов, побеждай опасных боссов и шаг за шагом возвращай свет Люмерии.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://github.com/makspruga-design/Lumira-updates/releases" target="_blank" rel="noreferrer">Скачать доступную версию ↗</a>
+            <a class="btn secondary" href="#about">Узнать об игре</a>
+          </div>
+        </div>
+        <aside class="hero-card reveal">
+          <div class="crystal"></div>
+          <div class="statrow"><div class="stat"><b>2</b><span>героя</span></div><div class="stat"><b>∞</b><span>развитие</span></div><div class="stat"><b>⚔</b><span>битвы</span></div></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-tag">Твой путь</div>
+        <h2 class="section-title reveal">Каждая вылазка делает героя сильнее</h2>
+        <p class="section-copy reveal">Люмерия строится вокруг понятного цикла: отправляйся в опасную локацию, переживай волны противников, собирай ресурсы и возвращайся в город, чтобы подготовиться к следующему испытанию.</p>
+        <div class="features">
+          <article class="card reveal"><div class="icon">⚔</div><h3>Живые сражения</h3><p>Бой с толпами врагов, опасными зонами и атаками боссов, которые заставляют постоянно двигаться и выбирать момент для удара.</p></article>
+          <article class="card reveal"><div class="icon">◇</div><h3>Сила кристаллов</h3><p>Осколки и редкие ресурсы становятся частью прогресса мира и помогают открывать новые возможности между походами.</p></article>
+          <article class="card reveal"><div class="icon">⌁</div><h3>Новые земли</h3><p>Деревни, арены, мрачные леса, подземелья и другие зоны постепенно складываются в единый большой мир.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="world" id="world">
+      <div class="wrap world-grid">
+        <div class="map reveal"><i class="pin p1"></i><i class="pin p2"></i><i class="pin p3"></i></div>
+        <div>
+          <div class="section-tag">Мир Люмерии</div>
+          <h2 class="section-title reveal">Город — только начало</h2>
+          <p class="section-copy reveal">Безопасное поселение становится центром приключения. Отсюда герой отправляется в новые зоны, сражается на аренах, ищет осколки и открывает всё более опасные маршруты.</p>
+          <div class="timeline">
+            <div class="step reveal"><div class="num">I</div><div><h4>Подготовь героя</h4><p>Выбери снаряжение и усиления перед вылазкой.</p></div></div>
+            <div class="step reveal"><div class="num">II</div><div><h4>Переживи волны</h4><p>Каждая новая волна меняет темп и повышает риск.</p></div></div>
+            <div class="step reveal"><div class="num">III</div><div><h4>Победи босса</h4><p>Изучи механику противника и забери награду.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="bosses">
+      <div class="wrap">
+        <div class="section-tag">Испытания</div>
+        <h2 class="section-title reveal">Боссы меняют правила боя</h2>
+        <p class="section-copy reveal">Главные противники не должны быть просто большим запасом здоровья. У каждого — собственная арена, давление на игрока и механика, которую нужно понять.</p>
+        <div class="bosses">
+          <article class="boss reveal"><div class="silhouette spider"></div><div><small>Босс</small><h3>Паук-Матка</h3></div></article>
+          <article class="boss reveal"><div class="silhouette guardian"></div><div><small>Будущая угроза</small><h3>Хранитель осколков</h3></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="release" id="updates">
+      <div class="wrap">
+        <div class="releasebox reveal">
+          <div><div class="section-tag">Разработка продолжается</div><h2>Следи за новой версией</h2><p>Публичный репозиторий используется для подписанных обновлений игры. Здесь можно открыть актуальные релизы и историю изменений, а позднее на этом месте появится основная кнопка «Играть» для браузерной версии.</p></div>
+          <div class="release-actions"><a class="btn primary" href="https://github.com/makspruga-design/Lumira-updates/releases" target="_blank" rel="noreferrer">Открыть релизы ↗</a><a class="btn secondary" href="https://github.com/makspruga-design/Lumira-updates" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap foot"><span>© <span id="year"></span> Люмерия. Игра находится в разработке.</span><a href="#top">Наверх ↑</a></div></footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const io = new IntersectionObserver((entries)=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
