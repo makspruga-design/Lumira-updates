@@ -1,0 +1,5 @@
+{
+  "version": "0.19.6",
+  "builder": "https://lumira-0196-builder.onrender.com/payload.json",
+  "purpose": "Publish verified Creature Motion V4 OTA candidate using the proven fallback path."
+}
