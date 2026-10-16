@@ -1,0 +1,8 @@
+{
+  "version": "0.19.5",
+  "source_commit": "6454b9ac2ef1d0e86052d1ad5a95f90a03fb2554",
+  "android_sha256": "3e3fa1756f7c9a68ee1c2c3426bb68320ce57638b193eadee3704663bc2373ba",
+  "windows_sha256": "d1ffe71f3510024ca6cd8af51a50073f10df4699b6a8139cc56c2d8775737697",
+  "pack_sha256": "6032314f1f4f86e42c9b5e9e1ca20bededf7f8871b012c70d4b99d1125c8dadf",
+  "main_content_sha256": "784778a6e3a1c22876b12ca121a2e965b680b63014b875cd43e505a975286bac"
+}
