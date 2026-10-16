@@ -1,0 +1,47 @@
+name: Inspect published return travel resources
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/inspect-return-travel.yml']
+permissions:
+  contents: write
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect older published manifests
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/lumira-manifests release/base
+          python3 - <<'PY'
+          import base64,json,urllib.request,urllib.error,pathlib
+          report=[]
+          for version in ['0.19.1','0.19.2','0.19.3','0.19.4']:
+            for platform in ['android','windows']:
+              url=f'https://github.com/makspruga-design/Lumira-updates/releases/download/v{version}/lumira-017-{platform}.json'
+              try:
+                raw=urllib.request.urlopen(url,timeout=40).read()
+              except Exception as e:
+                report.append({'version':version,'platform':platform,'error':str(e)})
+                continue
+              env=json.loads(raw)
+              doc=json.loads(base64.b64decode(env['payload']))
+              hits=[]
+              for p in doc.get('packs',[]):
+                resource=str(p.get('resource',''))
+                if 'return_travel' in resource.lower() or 'player_3d' in resource.lower():
+                  hits.append(p)
+              report.append({'version':version,'platform':platform,'version_code':doc.get('version_code'),'hits':hits})
+              if version=='0.19.4':
+                pathlib.Path(f'release/base/{platform}-0.19.4-payload.json').write_text(json.dumps(doc,ensure_ascii=False,indent=2),encoding='utf-8')
+          pathlib.Path('release/base/return-travel-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+          PY
+      - name: Commit inspection report
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add release/base/return-travel-report.json release/base/*-0.19.4-payload.json
+          git commit -m 'Inspect published return travel resources'
+          git push
