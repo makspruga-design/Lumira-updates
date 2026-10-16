@@ -1,0 +1,180 @@
+[
+  {
+    "version": "0.19.1",
+    "platform": "android",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "version": "0.19.1",
+    "platform": "windows",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "version": "0.19.2",
+    "platform": "android",
+    "version_code": 39,
+    "hits": [
+      {
+        "sha256": "865272d49cc653b58123af7a04cc0c1b9f086d00ab72838e3ad66b3ab7c9427e",
+        "size": 4439,
+        "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/865272d49cc653b58123af7a04cc0c1b9f086d00ab72838e3ad66b3ab7c9427e.zip",
+        "resource": "scripts/player_3d.gdc",
+        "content_sha256": "36b15e1e31b22b2b6d9d614729f51ff30c52bdef906e72b5a9a87c2311a62c95"
+      },
+      {
+        "sha256": "37531ba9a78033489257102f9bdb689ed038d4181311ec8504e226518ba1032e",
+        "size": 226,
+        "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/37531ba9a78033489257102f9bdb689ed038d4181311ec8504e226518ba1032e.zip",
+        "resource": "scripts/return_travel_state.gd.remap",
+        "content_sha256": "f968fbe256d2b3ba64921ec9744a739a60f5f49f8cb8a380ca97ed3afa4fa6db"
+      },
+      {
+        "sha256": "4b190c3e719fa04bc49e3e1de036366625c6b9bf94f7e807a730d93816afae81",
+        "size": 12070,
+        "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/4b190c3e719fa04bc49e3e1de036366625c6b9bf94f7e807a730d93816afae81.zip",
+        "resource": "scripts/return_travel_state.gdc",
+        "content_sha256": "f64ea9b0dad12fb436569fec82ca2f984dddd2a1de43c5799c9eaf988408ddc1"
+      }
+    ]
+  },
+  {
+    "version": "0.19.2",
+    "platform": "windows",
+    "version_code": 39,
+    "hits": [
+      {
+        "sha256": "c7ec4ed0d40873d7f3212011782a0a9f7548c5d04f5eb681add9223f6bbf4d06",
+        "size": 4441,
+        "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/c7ec4ed0d40873d7f3212011782a0a9f7548c5d04f5eb681add9223f6bbf4d06.zip",
+        "resource": "scripts/player_3d.gdc",
+        "content_sha256": "36b15e1e31b22b2b6d9d614729f51ff30c52bdef906e72b5a9a87c2311a62c95"
+      },
+      {
+        "sha256": "37531ba9a78033489257102f9bdb689ed038d4181311ec8504e226518ba1032e",
+        "size": 226,
+        "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/37531ba9a78033489257102f9bdb689ed038d4181311ec8504e226518ba1032e.zip",
+        "resource": "scripts/return_travel_state.gd.remap",
+        "content_sha256": "f968fbe256d2b3ba64921ec9744a739a60f5f49f8cb8a380ca97ed3afa4fa6db"
+      },
+      {
+        "sha256": "336416e4024941e511c2ac762a0c7ff50756af861f952a2a72e639f244fef6f5",
+        "size": 12062,
+        "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/336416e4024941e511c2ac762a0c7ff50756af861f952a2a72e639f244fef6f5.zip",
+        "resource": "scripts/return_travel_state.gdc",
+        "content_sha256": "f64ea9b0dad12fb436569fec82ca2f984dddd2a1de43c5799c9eaf988408ddc1"
+      }
+    ]
+  },
+  {
+    "version": "0.19.3",
+    "platform": "android",
+    "version_code": 40,
+    "hits": [
+      {
+        "sha256": "865272d49cc653b58123af7a04cc0c1b9f086d00ab72838e3ad66b3ab7c9427e",
+        "size": 4439,
+        "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/865272d49cc653b58123af7a04cc0c1b9f086d00ab72838e3ad66b3ab7c9427e.zip",
+        "resource": "scripts/player_3d.gdc",
+        "content_sha256": "36b15e1e31b22b2b6d9d614729f51ff30c52bdef906e72b5a9a87c2311a62c95"
+      },
+      {
+        "sha256": "37531ba9a78033489257102f9bdb689ed038d4181311ec8504e226518ba1032e",
+        "size": 226,
+        "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/37531ba9a78033489257102f9bdb689ed038d4181311ec8504e226518ba1032e.zip",
+        "resource": "scripts/return_travel_state.gd.remap",
+        "content_sha256": "f968fbe256d2b3ba64921ec9744a739a60f5f49f8cb8a380ca97ed3afa4fa6db"
+      },
+      {
+        "sha256": "4b190c3e719fa04bc49e3e1de036366625c6b9bf94f7e807a730d93816afae81",
+        "size": 12070,
+        "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/4b190c3e719fa04bc49e3e1de036366625c6b9bf94f7e807a730d93816afae81.zip",
+        "resource": "scripts/return_travel_state.gdc",
+        "content_sha256": "f64ea9b0dad12fb436569fec82ca2f984dddd2a1de43c5799c9eaf988408ddc1"
+      }
+    ]
+  },
+  {
+    "version": "0.19.3",
+    "platform": "windows",
+    "version_code": 40,
+    "hits": [
+      {
+        "sha256": "c7ec4ed0d40873d7f3212011782a0a9f7548c5d04f5eb681add9223f6bbf4d06",
+        "size": 4441,
+        "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/c7ec4ed0d40873d7f3212011782a0a9f7548c5d04f5eb681add9223f6bbf4d06.zip",
+        "resource": "scripts/player_3d.gdc",
+        "content_sha256": "36b15e1e31b22b2b6d9d614729f51ff30c52bdef906e72b5a9a87c2311a62c95"
+      },
+      {
+        "sha256": "37531ba9a78033489257102f9bdb689ed038d4181311ec8504e226518ba1032e",
+        "size": 226,
+        "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/37531ba9a78033489257102f9bdb689ed038d4181311ec8504e226518ba1032e.zip",
+        "resource": "scripts/return_travel_state.gd.remap",
+        "content_sha256": "f968fbe256d2b3ba64921ec9744a739a60f5f49f8cb8a380ca97ed3afa4fa6db"
+      },
+      {
+        "sha256": "336416e4024941e511c2ac762a0c7ff50756af861f952a2a72e639f244fef6f5",
+        "size": 12062,
+        "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/336416e4024941e511c2ac762a0c7ff50756af861f952a2a72e639f244fef6f5.zip",
+        "resource": "scripts/return_travel_state.gdc",
+        "content_sha256": "f64ea9b0dad12fb436569fec82ca2f984dddd2a1de43c5799c9eaf988408ddc1"
+      }
+    ]
+  },
+  {
+    "version": "0.19.4",
+    "platform": "android",
+    "version_code": 41,
+    "hits": [
+      {
+        "sha256": "865272d49cc653b58123af7a04cc0c1b9f086d00ab72838e3ad66b3ab7c9427e",
+        "size": 4439,
+        "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/865272d49cc653b58123af7a04cc0c1b9f086d00ab72838e3ad66b3ab7c9427e.zip",
+        "resource": "scripts/player_3d.gdc",
+        "content_sha256": "36b15e1e31b22b2b6d9d614729f51ff30c52bdef906e72b5a9a87c2311a62c95"
+      },
+      {
+        "sha256": "37531ba9a78033489257102f9bdb689ed038d4181311ec8504e226518ba1032e",
+        "size": 226,
+        "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/37531ba9a78033489257102f9bdb689ed038d4181311ec8504e226518ba1032e.zip",
+        "resource": "scripts/return_travel_state.gd.remap",
+        "content_sha256": "f968fbe256d2b3ba64921ec9744a739a60f5f49f8cb8a380ca97ed3afa4fa6db"
+      },
+      {
+        "sha256": "4b190c3e719fa04bc49e3e1de036366625c6b9bf94f7e807a730d93816afae81",
+        "size": 12070,
+        "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/4b190c3e719fa04bc49e3e1de036366625c6b9bf94f7e807a730d93816afae81.zip",
+        "resource": "scripts/return_travel_state.gdc",
+        "content_sha256": "f64ea9b0dad12fb436569fec82ca2f984dddd2a1de43c5799c9eaf988408ddc1"
+      }
+    ]
+  },
+  {
+    "version": "0.19.4",
+    "platform": "windows",
+    "version_code": 41,
+    "hits": [
+      {
+        "sha256": "c7ec4ed0d40873d7f3212011782a0a9f7548c5d04f5eb681add9223f6bbf4d06",
+        "size": 4441,
+        "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/c7ec4ed0d40873d7f3212011782a0a9f7548c5d04f5eb681add9223f6bbf4d06.zip",
+        "resource": "scripts/player_3d.gdc",
+        "content_sha256": "36b15e1e31b22b2b6d9d614729f51ff30c52bdef906e72b5a9a87c2311a62c95"
+      },
+      {
+        "sha256": "37531ba9a78033489257102f9bdb689ed038d4181311ec8504e226518ba1032e",
+        "size": 226,
+        "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/37531ba9a78033489257102f9bdb689ed038d4181311ec8504e226518ba1032e.zip",
+        "resource": "scripts/return_travel_state.gd.remap",
+        "content_sha256": "f968fbe256d2b3ba64921ec9744a739a60f5f49f8cb8a380ca97ed3afa4fa6db"
+      },
+      {
+        "sha256": "336416e4024941e511c2ac762a0c7ff50756af861f952a2a72e639f244fef6f5",
+        "size": 12062,
+        "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/336416e4024941e511c2ac762a0c7ff50756af861f952a2a72e639f244fef6f5.zip",
+        "resource": "scripts/return_travel_state.gdc",
+        "content_sha256": "f64ea9b0dad12fb436569fec82ca2f984dddd2a1de43c5799c9eaf988408ddc1"
+      }
+    ]
+  }
+]

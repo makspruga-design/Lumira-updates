@@ -1,0 +1,508 @@
+{
+  "protocol": 1,
+  "native_id": "lumira-017",
+  "platform": "windows",
+  "engine": "4.3",
+  "version": "0.19.4",
+  "version_code": 41,
+  "notes": "Убраны значения HP над головой своего питомца; имя и уровень сохранены. Навигатор маршрута теперь показывает только стрелку к следующему переходу, без названий и расстояния. Стрелка учитывает поворот камеры. Все изменения 0.19.3 сохранены.",
+  "packs": [
+    {
+      "sha256": "3876338ae293ca4a951117dd4fb7adadd9e6a0a3fb658d4692444a7408cfa141",
+      "size": 911,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.18.2/3876338ae293ca4a951117dd4fb7adadd9e6a0a3fb658d4692444a7408cfa141.zip",
+      "resource": ".godot/exported/133200997/export-c45a301d49d5d6ba03c16fbfb8a0681e-main_3d.scn",
+      "content_sha256": "9c9e821d85184e623e622fbec5febedbf5d7ac5b6e03b0f9a69cb893c33d93d3"
+    },
+    {
+      "sha256": "04e2aec06b490ac2474e5918fef73f2ee1a738107c67f63d6d5b26ff4f33c0f3",
+      "size": 293910,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/04e2aec06b490ac2474e5918fef73f2ee1a738107c67f63d6d5b26ff4f33c0f3.zip",
+      "resource": ".godot/imported/auctioneer-v1.png-ca8b93c5b5618e349a725994522e601a.ctex",
+      "content_sha256": "2d0e2fb23092899e02e20205357f8f19b8bf9293ba6b82642f57991969d0104e"
+    },
+    {
+      "sha256": "d4e22feb68817c39ed1bd2dc09b9f2b8d0e40f2c2ebde0eacfaf90b72b691d1d",
+      "size": 1368024,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.4/d4e22feb68817c39ed1bd2dc09b9f2b8d0e40f2c2ebde0eacfaf90b72b691d1d.zip",
+      "resource": ".godot/imported/female-backpack-v2.png-6351f513ede763ad1247428220dda7b3.ctex",
+      "content_sha256": "bb3e1ec0d6355e6f7c8ae19a4828f0fa63523d47c06ecf281c8748c2cabdcaf7"
+    },
+    {
+      "sha256": "372c66445c0e0dc90d7f34d0d01cbb384af8a9043d9a91c6214a966e2d6f21de",
+      "size": 1377139,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.2/372c66445c0e0dc90d7f34d0d01cbb384af8a9043d9a91c6214a966e2d6f21de.zip",
+      "resource": ".godot/imported/female-rig-v2.png-751d83b9eadb620c371d682fb56dd6a9.ctex",
+      "content_sha256": "e13538d810f2b0346c4c5581c7fcd280dbeb2755b58dfccc1456407f77dc62b1"
+    },
+    {
+      "sha256": "908eabc32aa8a2194e6b14812f76113bed1a5bf681eb076337ec37b5772a0c84",
+      "size": 1156293,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.3/908eabc32aa8a2194e6b14812f76113bed1a5bf681eb076337ec37b5772a0c84.zip",
+      "resource": ".godot/imported/flower-guardian.png-32907527b577d98d04483e5e38473ead.ctex",
+      "content_sha256": "466b33b2e88aef0978b6fa70e911b8b824b0f6abc0b93ba76210a4d688e869f8"
+    },
+    {
+      "sha256": "708d6d7e75d22988a60ab70e2636efeacd4df5c7059a54e89e10a8b3cf26e05f",
+      "size": 1309272,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.4/708d6d7e75d22988a60ab70e2636efeacd4df5c7059a54e89e10a8b3cf26e05f.zip",
+      "resource": ".godot/imported/leg-parts-v3.png-2aaa81d868d46abc418251ed1c9c5dd1.ctex",
+      "content_sha256": "59978ce0efcffd97b34e55a31ce004c717748440b3b98af4314759eb2925c643"
+    },
+    {
+      "sha256": "48338fe30d475f7ed866a8ea0369ac1bc40729c38411ea47f2306d2afce0e1d3",
+      "size": 1387437,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.4/48338fe30d475f7ed866a8ea0369ac1bc40729c38411ea47f2306d2afce0e1d3.zip",
+      "resource": ".godot/imported/male-backpack-v1.png-dc433399f5ee092cc80a3b0a3efef891.ctex",
+      "content_sha256": "9712193cdacc75486a8b27aa52a450edaf1bea85a69e1ed36ba47761b4100c00"
+    },
+    {
+      "sha256": "b510225084b08b625f8404561266e1081042e35a46dc36f8a474d17bd41c70d2",
+      "size": 1379246,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.2/b510225084b08b625f8404561266e1081042e35a46dc36f8a474d17bd41c70d2.zip",
+      "resource": ".godot/imported/male-rig-v2.png-236581dc9e57bb8f3ab55a2e0e8688f0.ctex",
+      "content_sha256": "fc9df1c073d193f35b17e3e5ad75ada8b1b831a605a97083229eccca21449b4d"
+    },
+    {
+      "sha256": "43626155a61fb3fe224c0e2c87a97462ae642ad021ae5630593d2cd750cd47ec",
+      "size": 660255,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.3/43626155a61fb3fe224c0e2c87a97462ae642ad021ae5630593d2cd750cd47ec.zip",
+      "resource": ".godot/imported/mossling-1.png-7f113b681d3a5a9b6485da78a737842b.ctex",
+      "content_sha256": "00ae85ca7923552cd53e9b9925748bda08b2f50c596eda282e474aab84c5b994"
+    },
+    {
+      "sha256": "175900dfb809effe0c6db9cefabb2a8817c7ee2c65eeec13c092d00d43311bbb",
+      "size": 8261,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/175900dfb809effe0c6db9cefabb2a8817c7ee2c65eeec13c092d00d43311bbb.zip",
+      "resource": ".godot/imported/return_wings.svg-a3e9c1de510e8f8f0d9eff02548d073f.ctex",
+      "content_sha256": "e83053bf1d14f2122c5a723aabfdb4973b840c371458e7aff5b264d8bc8bceb5"
+    },
+    {
+      "sha256": "acb07130b238ad7ba968a172c112a0ade16556c4c1f6ebb6c4b3ffea4289c90d",
+      "size": 1899,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.18.2/acb07130b238ad7ba968a172c112a0ade16556c4c1f6ebb6c4b3ffea4289c90d.zip",
+      "resource": ".godot/uid_cache.bin",
+      "content_sha256": "6d8af89ffe356b7d322a126a2168be993e6d2851a434b3b2c6d8b96a8ec8cedf"
+    },
+    {
+      "sha256": "0c20d8203376c71f97c2be03740750e02cdf09ca96c5b6a87e21fbc95fc38928",
+      "size": 372,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.3/0c20d8203376c71f97c2be03740750e02cdf09ca96c5b6a87e21fbc95fc38928.zip",
+      "resource": "assets/creature_motion_v3/flower-guardian.png.import",
+      "content_sha256": "07813d5d4e11a22517d64211401558f11df79ae588acf51cfca936848e01298c"
+    },
+    {
+      "sha256": "34eeb89a3db027e3e9f516c88cb2467b3b6c73f640b14425241acd37d4b6ae26",
+      "size": 355,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.3/34eeb89a3db027e3e9f516c88cb2467b3b6c73f640b14425241acd37d4b6ae26.zip",
+      "resource": "assets/creature_motion_v3/mossling-1.png.import",
+      "content_sha256": "aff7f9eb75936fc899192cf1fa50ea8f2113fd4b6ddd23fa7b4156492d117f0c"
+    },
+    {
+      "sha256": "2f247846ba31a7bb5f2c42deffcfae37d78bf38afb66a34f7dc9cfbbb14b28d4",
+      "size": 336,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.2/2f247846ba31a7bb5f2c42deffcfae37d78bf38afb66a34f7dc9cfbbb14b28d4.zip",
+      "resource": "assets/hero/female-rig-v2.png.import",
+      "content_sha256": "98958a73bb986d41f4f6bed73cb9bcae60ce1e0f353893eed7c1a9c01682f25c"
+    },
+    {
+      "sha256": "fed0dff301fed7918aa2c00820154dfea71e7c65f507fa013d772842708193b2",
+      "size": 331,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.2/fed0dff301fed7918aa2c00820154dfea71e7c65f507fa013d772842708193b2.zip",
+      "resource": "assets/hero/male-rig-v2.png.import",
+      "content_sha256": "95636ad6d562985206170329baa1b7b6c6bbe5fcdcd461723da40a63b5d63839"
+    },
+    {
+      "sha256": "f9a8bf4b49af5dd0365b835f57daf49d144a926eea43b66551386fbda2b6c88a",
+      "size": 1318,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.4/f9a8bf4b49af5dd0365b835f57daf49d144a926eea43b66551386fbda2b6c88a.zip",
+      "resource": "assets/hero/motion-v3/atlas-layout.json",
+      "content_sha256": "5c79b4debf56f5da879b26f78d8bfaa86ff83fb66290666e3ed66fea61575df8"
+    },
+    {
+      "sha256": "274b98b23d5ec254dbfc5b64ff18a761bf5254c9ac9f305ec433de08b3af9860",
+      "size": 367,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.4/274b98b23d5ec254dbfc5b64ff18a761bf5254c9ac9f305ec433de08b3af9860.zip",
+      "resource": "assets/hero/motion-v3/female-backpack-v2.png.import",
+      "content_sha256": "1b2403d863bdc9aa456bfcdc83765be3e8ecdc1aa057dcf8e8b27582157cf410"
+    },
+    {
+      "sha256": "3dd0346fe154995427e13a94ae187cfa4bd88d99c065ba63dce3bbfdaabd7142",
+      "size": 351,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.4/3dd0346fe154995427e13a94ae187cfa4bd88d99c065ba63dce3bbfdaabd7142.zip",
+      "resource": "assets/hero/motion-v3/leg-parts-v3.png.import",
+      "content_sha256": "12b6c56f380684ce0e2dff1cbf5b76575862716605d79da2d8022b4bdc501794"
+    },
+    {
+      "sha256": "ad5fecda6455fde7f37c6da717eb091a781414f0ba554caec80fda17bbed16ec",
+      "size": 361,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.4/ad5fecda6455fde7f37c6da717eb091a781414f0ba554caec80fda17bbed16ec.zip",
+      "resource": "assets/hero/motion-v3/male-backpack-v1.png.import",
+      "content_sha256": "8d6c6354c41d8c3c6e5780203993d55a1283d6ce54ac7bbcd14d0c37aa5c047b"
+    },
+    {
+      "sha256": "b45f73cb8a455309858cbd613286d8a3e789c0856bad6cc1697734c107e5eeac",
+      "size": 2948,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.4/b45f73cb8a455309858cbd613286d8a3e789c0856bad6cc1697734c107e5eeac.zip",
+      "resource": "assets/hero/motion-v3/walk_clip.json",
+      "content_sha256": "2fcb7f8014dbd54bdd6c9be21fd7ab61992289dc32876451e603838b1bf651c1"
+    },
+    {
+      "sha256": "d3b050eacd357236c8da2d37a9a5622d65c502a3d59f21ad78cb5b9b558dc7c2",
+      "size": 334,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/d3b050eacd357236c8da2d37a9a5622d65c502a3d59f21ad78cb5b9b558dc7c2.zip",
+      "resource": "assets/npc/auctioneer-v1.png.import",
+      "content_sha256": "5a224537bc7d548e5e5f60d20fe570abf5100e88a9ac01e796c726b68a227541"
+    },
+    {
+      "sha256": "9101dc99bbe30c13787e60eff59ad28f668b566d8af8080f6e4bf48610391736",
+      "size": 328,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/9101dc99bbe30c13787e60eff59ad28f668b566d8af8080f6e4bf48610391736.zip",
+      "resource": "assets/ui/return_wings.svg.import",
+      "content_sha256": "eea9ede000d0ebec9e0fea79675706a7a48b92643d48799860e20bf4434878ce"
+    },
+    {
+      "sha256": "259e83c204577af5055e9378d19782cbc439f8d846d1c7fbe13be2be7cb40ccb",
+      "size": 1888,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.0/259e83c204577af5055e9378d19782cbc439f8d846d1c7fbe13be2be7cb40ccb.zip",
+      "resource": "data/world_layout.json",
+      "content_sha256": "4798bf2ba72658a6f5cc959037183e6e4da1a81256404a5c683f296872d798cf"
+    },
+    {
+      "sha256": "1494f278f6d6a9151634ccf030fd79de688a8f39c4dc87e47990883612c70be5",
+      "size": 3793,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.9/1494f278f6d6a9151634ccf030fd79de688a8f39c4dc87e47990883612c70be5.zip",
+      "resource": "scripts/arena_environment.gdc",
+      "content_sha256": "d52e25e18c581dface217e7569605fdb608fb28ad97188d1fa6a81ffc9314916"
+    },
+    {
+      "sha256": "91c0ce13c55355c6b0390e65bfa4a52e7336d455266f88a5b513c7c4028b367c",
+      "size": 8684,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.18.2/91c0ce13c55355c6b0390e65bfa4a52e7336d455266f88a5b513c7c4028b367c.zip",
+      "resource": "scripts/arena_team_board.gdc",
+      "content_sha256": "46c257cdca2d41ad940ca954897cb4ab9078f354e7ff0ebc691cb146132388fb"
+    },
+    {
+      "sha256": "2c29fd5a70a492d3972fea8fcb20d5ebcb5a40f0699058ac6d892f75330f9780",
+      "size": 21562,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.18.2/2c29fd5a70a492d3972fea8fcb20d5ebcb5a40f0699058ac6d892f75330f9780.zip",
+      "resource": "scripts/arena_team_manager.gdc",
+      "content_sha256": "8433234ba45b868c2a96092eabc6b8a9e1fd539e66cd5e5dc41da36f17431750"
+    },
+    {
+      "sha256": "c990d2eca478776ac8dcea556e9a7ed2687331a89432360d77be0c3bdda0709c",
+      "size": 3267,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.18.2/c990d2eca478776ac8dcea556e9a7ed2687331a89432360d77be0c3bdda0709c.zip",
+      "resource": "scripts/arena_team_manager_revive.gdc",
+      "content_sha256": "39aff708794f4a413d70683c14f3d9b4bda6b9b4d30b9b07983a7b39fdc089fd"
+    },
+    {
+      "sha256": "85ae9545fcac83a92b8ade42d17f2fb340c1f90d8f5a4331aaf083da0cf1851f",
+      "size": 5360,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.18.2/85ae9545fcac83a92b8ade42d17f2fb340c1f90d8f5a4331aaf083da0cf1851f.zip",
+      "resource": "scripts/card_collection_ui.gdc",
+      "content_sha256": "80fc5bd25fffb82cad9c519162ef8f98ed93d85d19aa947828dfe7d2b40a8a5f"
+    },
+    {
+      "sha256": "a74a4f80f701a12916d58861e4b8d0634ee9b94d04f2f40447c22109c8b1c529",
+      "size": 8647,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.3/a74a4f80f701a12916d58861e4b8d0634ee9b94d04f2f40447c22109c8b1c529.zip",
+      "resource": "scripts/creature_motion.gdc",
+      "content_sha256": "18e9b78f47c2904b882e2a731a30d446fdef27d23ce0be4d868d8d6c0d28b2fd"
+    },
+    {
+      "sha256": "a8bab0d0a91133876b8b41202cda3b52ced47ecbbf8976b0356b9d3bf17c50f6",
+      "size": 1281,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.18.0/a8bab0d0a91133876b8b41202cda3b52ced47ecbbf8976b0356b9d3bf17c50f6.zip",
+      "resource": "scripts/field_landscape.gdshader",
+      "content_sha256": "fbd57eab11411bf5f108404648f8e0d0cdc561b8fbd0c1d6128f449804318240"
+    },
+    {
+      "sha256": "92f62f266d5701189f99ee060d4864fbf51d4a8c579780256c1553d8cd4d2d02",
+      "size": 12068,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.1/92f62f266d5701189f99ee060d4864fbf51d4a8c579780256c1553d8cd4d2d02.zip",
+      "resource": "scripts/field_loot_manager.gdc",
+      "content_sha256": "ea3d571f528ee2fa9d8afa327c8e3a46c87cd45abf98a75ac6c5bad5460c6b0d"
+    },
+    {
+      "sha256": "9f30a2507c58f010d6c260e37d50f26f03bdf88604d080109760b3eeb3eb2793",
+      "size": 38319,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.0/9f30a2507c58f010d6c260e37d50f26f03bdf88604d080109760b3eeb3eb2793.zip",
+      "resource": "scripts/game_3d.gdc",
+      "content_sha256": "889837634f5a3674ca049bccc14586513c2a9584a93aba480625687ca1f3172c"
+    },
+    {
+      "sha256": "8edcf59f9b801fabf26a5743e1b6af232eee0afbd3505e96b25f4930504706f6",
+      "size": 16772,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.0/8edcf59f9b801fabf26a5743e1b6af232eee0afbd3505e96b25f4930504706f6.zip",
+      "resource": "scripts/game_session.gdc",
+      "content_sha256": "fb6aa9e3ea9078e73d60eea3cd0454d6646756c2a3bf6cb9d62435a2340dfce8"
+    },
+    {
+      "sha256": "f44e472634b1834579628ac496c147a878ca8251daaafbf9b066f982c1f22373",
+      "size": 456,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.2/f44e472634b1834579628ac496c147a878ca8251daaafbf9b066f982c1f22373.zip",
+      "resource": "scripts/hero/hero_body.gdshader",
+      "content_sha256": "973d93076a6873032a7221337924d94ef88a7cdb335e8d74aae253872418072c"
+    },
+    {
+      "sha256": "40928ffd5a12ae112df0e453cea18c159fc670a35e5917caf4f77985fb642870",
+      "size": 13509,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.4/40928ffd5a12ae112df0e453cea18c159fc670a35e5917caf4f77985fb642870.zip",
+      "resource": "scripts/hero/hero_visual.gdc",
+      "content_sha256": "32d40ee52ba92644edfeefb54f777b5dd0aa7e1ae4b461b0a06cad00a7ed8038"
+    },
+    {
+      "sha256": "a4bf5969a1ef2af6b9bcdb9c32662fb8db4e343566005448093cf310bbce8da7",
+      "size": 249,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.4/a4bf5969a1ef2af6b9bcdb9c32662fb8db4e343566005448093cf310bbce8da7.zip",
+      "resource": "scripts/hero/motion_body.gdshader",
+      "content_sha256": "84a918737a7c46a6fb294dece3eec64d7cf5d37b17bf90262693381737e2b7eb"
+    },
+    {
+      "sha256": "468a66dc467f573f1bf21b980bd870fd825989c2cadc75f50a18dd7571b087e8",
+      "size": 346,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.4/468a66dc467f573f1bf21b980bd870fd825989c2cadc75f50a18dd7571b087e8.zip",
+      "resource": "scripts/hero/motion_cloth_join.gdshader",
+      "content_sha256": "14cb631116f3d97585d58db2901b757e094bbc1f651ddacc12e13c9b81fa26f7"
+    },
+    {
+      "sha256": "2b1904b8fb866295ca1e474d7abdda221982202e8d22803422d9200c271a58ea",
+      "size": 325,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.4/2b1904b8fb866295ca1e474d7abdda221982202e8d22803422d9200c271a58ea.zip",
+      "resource": "scripts/hero/motion_knee_patch.gdshader",
+      "content_sha256": "f247eb6b420f20c520d2ce8aecb15511a2d6e8cf934e1c6743f369fe849a9fdd"
+    },
+    {
+      "sha256": "1c089f7ff49d48b9cb354fe0f7ba63630e6b024b8ee15551800b514efe628d14",
+      "size": 453,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.4/1c089f7ff49d48b9cb354fe0f7ba63630e6b024b8ee15551800b514efe628d14.zip",
+      "resource": "scripts/hero/motion_shoe.gdshader",
+      "content_sha256": "078b3a97edd4081b6ef8882e63b0b31f059b59d990e59001020ac3600d4bffb2"
+    },
+    {
+      "sha256": "3bae87f7c8120d62e994b563161fd78caef20f9e6623435a5e3bc28441bd7c76",
+      "size": 9409,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.4/3bae87f7c8120d62e994b563161fd78caef20f9e6623435a5e3bc28441bd7c76.zip",
+      "resource": "scripts/lumira_hud.gdc",
+      "content_sha256": "757c87d5d0d7b9139529b70c740a9ab081ac5c830f85f97d741d983ff7672ce7"
+    },
+    {
+      "sha256": "b9a390e596f9af616d92d47920200c65c02c3e3d548985b1ea464c575e3bbd04",
+      "size": 6161,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.3/b9a390e596f9af616d92d47920200c65c02c3e3d548985b1ea464c575e3bbd04.zip",
+      "resource": "scripts/mob_3d.gdc",
+      "content_sha256": "5a2293722f77011adad9524d95086e36c49e5e43fe4e4c93248239993110767b"
+    },
+    {
+      "sha256": "95e228f3bd7bafccf0645f116c4560366a1d7e120dac3bab75e9a00fbc8204df",
+      "size": 11636,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/95e228f3bd7bafccf0645f116c4560366a1d7e120dac3bab75e9a00fbc8204df.zip",
+      "resource": "scripts/online/mini_online.gdc",
+      "content_sha256": "275b70795c7127ababed02f172be46636fb01c18c0c9d6584ccc104f4388b764"
+    },
+    {
+      "sha256": "cd6c941685f1d7a2cb797e994c77c883b43443d9fe50706d7bc3fdb87080028b",
+      "size": 5080,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.18.2/cd6c941685f1d7a2cb797e994c77c883b43443d9fe50706d7bc3fdb87080028b.zip",
+      "resource": "scripts/online/online_panel.gdc",
+      "content_sha256": "54f169a6dfbbe440374a1d72bfacff26a7404d612fac8702e44b2d7ed85971fd"
+    },
+    {
+      "sha256": "fc4f87e142f8f1d352bca7cf9e7f901a351ad6293c5fab10c276ffa6bdee4c44",
+      "size": 5379,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/fc4f87e142f8f1d352bca7cf9e7f901a351ad6293c5fab10c276ffa6bdee4c44.zip",
+      "resource": "scripts/online/remote_player.gdc",
+      "content_sha256": "ae1c3cb19e0e623eb431f4271a52839c55f585a62cea34553013ea4995442ad1"
+    },
+    {
+      "sha256": "44e1e61f4eee69f531334812f8e508df2a73f23ee058ce7bd4b810e2019d568c",
+      "size": 226,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.7/44e1e61f4eee69f531334812f8e508df2a73f23ee058ce7bd4b810e2019d568c.zip",
+      "resource": "scripts/online/trade_client.gd.remap",
+      "content_sha256": "6a9f63cca3b0008173b204238b4a3a48548b964895d3de880bc0778d1522a16d"
+    },
+    {
+      "sha256": "0887d6c3981839abcec593d5f6fd491b012b8abc37314d155d2418678b576371",
+      "size": 6949,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.7/0887d6c3981839abcec593d5f6fd491b012b8abc37314d155d2418678b576371.zip",
+      "resource": "scripts/online/trade_client.gdc",
+      "content_sha256": "c8d5d8c098072f44c6c624f5de76c16cc05ca8495f970ec376a440c9b3a85734"
+    },
+    {
+      "sha256": "925621f11edb4c666e19e9da86dbfccef3b3920cba2e4e096cc8e9279952f53a",
+      "size": 8571,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.18.0/925621f11edb4c666e19e9da86dbfccef3b3920cba2e4e096cc8e9279952f53a.zip",
+      "resource": "scripts/painted_field_3d.gdc",
+      "content_sha256": "b83bfb22d71d0b3604bd3c7272ef558574bae4a6a78d2f0f40e1ec09d1ce9e93"
+    },
+    {
+      "sha256": "205320c8485ab49ab174400a498c5d8bec3d3051b0264a627bbfa29020d581e7",
+      "size": 17674,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.7/205320c8485ab49ab174400a498c5d8bec3d3051b0264a627bbfa29020d581e7.zip",
+      "resource": "scripts/painted_house_3d.gdc",
+      "content_sha256": "9510d248c908f190f5d536c93ba75af22e48596aad95b992302f5e855597a762"
+    },
+    {
+      "sha256": "0e97517f5cf99f2107b8a2e1b4138bac8b23ab421826f1d057bbe8c336248a8e",
+      "size": 26655,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/0e97517f5cf99f2107b8a2e1b4138bac8b23ab421826f1d057bbe8c336248a8e.zip",
+      "resource": "scripts/painted_town_3d.gdc",
+      "content_sha256": "f3349df5503431af8455fae43dd05ec2471830e41c290593c03f09601d833dfe"
+    },
+    {
+      "sha256": "c0ebdab8267bfc94cb7bf5af9ed4d037c62a2cf54697ba305c6ec33a7b024454",
+      "size": 8056,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.6/c0ebdab8267bfc94cb7bf5af9ed4d037c62a2cf54697ba305c6ec33a7b024454.zip",
+      "resource": "scripts/pet_revival_state.gdc",
+      "content_sha256": "e838f162ee6793b13512bcb9c1e56146da2771ffc4d7e908516e08f843fc8c50"
+    },
+    {
+      "sha256": "d66876bb09589bd817701941bfd0217e5de818273e20ce3c34e7ddd87536d545",
+      "size": 214,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.5/d66876bb09589bd817701941bfd0217e5de818273e20ce3c34e7ddd87536d545.zip",
+      "resource": "scripts/pet_stats_panel.gd.remap",
+      "content_sha256": "9ae8c87495ebfa0ce214d216a7d4f5a5215216fcbdbecd087bb25a201f28edde"
+    },
+    {
+      "sha256": "ac52ee373ee69b96a4fe11c630e4777c6eb3e4879484fef371bc3c63f1eeef08",
+      "size": 3520,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.5/ac52ee373ee69b96a4fe11c630e4777c6eb3e4879484fef371bc3c63f1eeef08.zip",
+      "resource": "scripts/pet_stats_panel.gdc",
+      "content_sha256": "5dcee9f3569689665f57e4c670f1fab6248fcb907f3fdd8a70e95fcf25e26165"
+    },
+    {
+      "sha256": "c7ec4ed0d40873d7f3212011782a0a9f7548c5d04f5eb681add9223f6bbf4d06",
+      "size": 4441,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/c7ec4ed0d40873d7f3212011782a0a9f7548c5d04f5eb681add9223f6bbf4d06.zip",
+      "resource": "scripts/player_3d.gdc",
+      "content_sha256": "36b15e1e31b22b2b6d9d614729f51ff30c52bdef906e72b5a9a87c2311a62c95"
+    },
+    {
+      "sha256": "37531ba9a78033489257102f9bdb689ed038d4181311ec8504e226518ba1032e",
+      "size": 226,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/37531ba9a78033489257102f9bdb689ed038d4181311ec8504e226518ba1032e.zip",
+      "resource": "scripts/return_travel_state.gd.remap",
+      "content_sha256": "f968fbe256d2b3ba64921ec9744a739a60f5f49f8cb8a380ca97ed3afa4fa6db"
+    },
+    {
+      "sha256": "336416e4024941e511c2ac762a0c7ff50756af861f952a2a72e639f244fef6f5",
+      "size": 12062,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/336416e4024941e511c2ac762a0c7ff50756af861f952a2a72e639f244fef6f5.zip",
+      "resource": "scripts/return_travel_state.gdc",
+      "content_sha256": "f64ea9b0dad12fb436569fec82ca2f984dddd2a1de43c5799c9eaf988408ddc1"
+    },
+    {
+      "sha256": "efc267923766fbadbb7a47428614d782c8f9769d6a4a7e12adc1f39cc75b023a",
+      "size": 193,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.7/efc267923766fbadbb7a47428614d782c8f9769d6a4a7e12adc1f39cc75b023a.zip",
+      "resource": "scripts/trade_ui.gd.remap",
+      "content_sha256": "dedc2e1f1c7893e410a1882e6f65b0b85177e7e0087f7abceec3249955eeb9dc"
+    },
+    {
+      "sha256": "c223795416d12820d6769fd1d8ab1eeef1fd0b685b102ed3b27c957b305a729d",
+      "size": 9450,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.7/c223795416d12820d6769fd1d8ab1eeef1fd0b685b102ed3b27c957b305a729d.zip",
+      "resource": "scripts/trade_ui.gdc",
+      "content_sha256": "e332e0d07c1a00ed82a8cbd5e9f11426ba51e9ffa63ed5dd6a6a69c46c6968dd"
+    },
+    {
+      "sha256": "55ce1caee7b53a36403e51853de578ec3006969694697fc35d3f0a2152784fa5",
+      "size": 6361,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.17.1/55ce1caee7b53a36403e51853de578ec3006969694697fc35d3f0a2152784fa5.zip",
+      "resource": "scripts/updates/update_manager.gdc",
+      "content_sha256": "2347180bbc557acb32dc1bf7d88353fa4e29a098486928b4afb2e1dcc60f74bf"
+    },
+    {
+      "sha256": "d02afe6513b6204f010e24796b7df928f37a2bae2d8bb9757a8e1db8f3e45064",
+      "size": 18679,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.4/d02afe6513b6204f010e24796b7df928f37a2bae2d8bb9757a8e1db8f3e45064.zip",
+      "resource": "scripts/world_combat_manager.gdc",
+      "content_sha256": "8ef7323bdb847e1f71518d6bfb629e577a0ebc0f3309f7274b2070213ce8f0a1"
+    },
+    {
+      "sha256": "a3ec0ac1f1161882ab89f8354aaeedd6e362b91181cb6f63ad15affd602ee372",
+      "size": 3878,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.18.1/a3ec0ac1f1161882ab89f8354aaeedd6e362b91181cb6f63ad15affd602ee372.zip",
+      "resource": "scripts/world_combat_state.gdc",
+      "content_sha256": "d5fb34424879a8c1b24281cc90cc7accd44f4e23426b07a036efd2d9ff519905"
+    },
+    {
+      "sha256": "f7466a6dfaa167b8d8c76be09bb00b3a390bfd0751c1dffa3c57f8c333d4693c",
+      "size": 761,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.0/f7466a6dfaa167b8d8c76be09bb00b3a390bfd0751c1dffa3c57f8c333d4693c.zip",
+      "resource": "scripts/world_ground.gdshader",
+      "content_sha256": "ac327d4eeb38983300af0d40d5671eace1956d61d801a0de394fafbcfa607df5"
+    },
+    {
+      "sha256": "b89a058c566e9be97f2aaf7c215821c70e200b345ce953005269db025b945212",
+      "size": 211,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.0/b89a058c566e9be97f2aaf7c215821c70e200b345ce953005269db025b945212.zip",
+      "resource": "scripts/world_location.gd.remap",
+      "content_sha256": "a8dc499620fb58697de2f608ec9aec7d9b66aa24f5009f274c28bc6fb5852c88"
+    },
+    {
+      "sha256": "4d8fbea1170269d5549788ae0e4719dd0a287eeff906e3ba06f05ddbf4448949",
+      "size": 3198,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.0/4d8fbea1170269d5549788ae0e4719dd0a287eeff906e3ba06f05ddbf4448949.zip",
+      "resource": "scripts/world_location.gdc",
+      "content_sha256": "5e9cf07d6a087c17993b01a70f8050b1bd6667bd6fd7799ad8bda13bcaf8a52a"
+    },
+    {
+      "sha256": "f9512b7e431fa3bcceabaa97b87fb5fb4f89a8042e4827ebd2b7edb1a8918001",
+      "size": 6808,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.0/f9512b7e431fa3bcceabaa97b87fb5fb4f89a8042e4827ebd2b7edb1a8918001.zip",
+      "resource": "scripts/world_map.gdc",
+      "content_sha256": "1f54c4af5e4a21228c8420b5415bec090eb5d82d44d135d4fcf14223f300220a"
+    },
+    {
+      "sha256": "536b9212177e43b1b208c3fe725283b58900fa2b0e8b1a3f7432ac9065063ebe",
+      "size": 207,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.0/536b9212177e43b1b208c3fe725283b58900fa2b0e8b1a3f7432ac9065063ebe.zip",
+      "resource": "scripts/world_minimap.gd.remap",
+      "content_sha256": "861a86935f8c8807cd0cfdbe32696a183520ff5a6f569d780de71a624eb1df74"
+    },
+    {
+      "sha256": "7b21b931a15633a60fd9d251c152fa118428a9b5c17d0c059aa390f84d8e6a64",
+      "size": 3958,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/7b21b931a15633a60fd9d251c152fa118428a9b5c17d0c059aa390f84d8e6a64.zip",
+      "resource": "scripts/world_minimap.gdc",
+      "content_sha256": "fc8072c55236230f700d0e3c02029f255ef1391e521b711de03330a9ac40ef87"
+    },
+    {
+      "sha256": "a66c4218c34b2c20660e34703c0258f2d12ef2cfb0a7ca456f285f0b375cacca",
+      "size": 8711,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.18.0/a66c4218c34b2c20660e34703c0258f2d12ef2cfb0a7ca456f285f0b375cacca.zip",
+      "resource": "scripts/world_population_pass.gdc",
+      "content_sha256": "06e452524734bf9a35ad0b96e8b0ba76e8296f7b332727cccceee233685ea592"
+    },
+    {
+      "sha256": "c33dc6738bc141f209107ce6a84e2f87131a7867e4d8bf38e1c107fbe9504e5c",
+      "size": 5740,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.2/c33dc6738bc141f209107ce6a84e2f87131a7867e4d8bf38e1c107fbe9504e5c.zip",
+      "resource": "scripts/world_routes.gdc",
+      "content_sha256": "bb01d4a2bc51c1935407a9644c6b60fb6c49cb293957e587cfccb5496a0aa818"
+    },
+    {
+      "sha256": "3af0a92ef9c2e486ceffbecc37c650e3b8a4f1b908ca2adb5f1c7a01de237b13",
+      "size": 9257,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.0/3af0a92ef9c2e486ceffbecc37c650e3b8a4f1b908ca2adb5f1c7a01de237b13.zip",
+      "resource": "scripts/world_scale_portal_pass.gdc",
+      "content_sha256": "d1542614944548ad3b55828e35f612f92ede5395f6bb7c85cdb8a24911be4a3b"
+    },
+    {
+      "sha256": "19bfec006e26980f6af21f29a832ac18afaeb987242e683ddfc757d5fad53988",
+      "size": 214,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.0/19bfec006e26980f6af21f29a832ac18afaeb987242e683ddfc757d5fad53988.zip",
+      "resource": "scripts/world_transport.gd.remap",
+      "content_sha256": "387058e7801de259012bb7ba8c3c03146e9a87e64e71bf0addaed1794f693de6"
+    },
+    {
+      "sha256": "1182f20fc9f52e62824d3870d5b7d81648ae15d9083bee2960a4bd4bdb52b17e",
+      "size": 1840,
+      "url": "https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.0/1182f20fc9f52e62824d3870d5b7d81648ae15d9083bee2960a4bd4bdb52b17e.zip",
+      "resource": "scripts/world_transport.gdc",
+      "content_sha256": "ec29cca3346bc710b1fa44782f45ad8234216a1cb4c763bc427c9eb2e0516016"
+    }
+  ]
+}
