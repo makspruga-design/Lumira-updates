@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.5 scene hotfix
+# release trigger: Lumira 0.19.6 Creature Motion V4
 name: Publish verified Lumira update
 on:
   push:
