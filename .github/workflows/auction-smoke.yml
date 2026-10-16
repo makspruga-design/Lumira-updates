@@ -1,8 +1,5 @@
 name: Verify live auction durability
 on:
-  push:
-    branches: [main]
-    paths: ['checks/auction-smoke.mjs', '.github/workflows/auction-smoke.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -18,5 +15,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Check durable trade through public WebSocket
+      - name: Check durable trade through public WebSocket (operator must restart server)
         run: node checks/auction-smoke.mjs
