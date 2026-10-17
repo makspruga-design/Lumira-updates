@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.13 Visual Polish V1
+# release trigger: Lumira 0.19.14 Online Nickname Roster
 name: Publish verified Lumira update
 on:
   push:
