@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.12 Offline Pack Shop Hotfix
+# release trigger: Lumira 0.19.13 Visual Polish V1
 name: Publish verified Lumira update
 on:
   push:
