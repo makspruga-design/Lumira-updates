@@ -1,5 +1,5 @@
 {
-  "version": "0.19.9",
+  "version": "0.19.10",
   "url": "https://lumira-0196-builder.onrender.com/payload.json",
-  "purpose": "Tiered white/blue/purple/gold packs, regional creature eligibility and per-tier revive-crystal odds"
+  "purpose": "Pack shop UI with four visual tiers, live odds, opening animation and reward reveal flow"
 }
