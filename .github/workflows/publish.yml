@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.6 Creature Motion V4
+# release trigger: Lumira 0.19.7 Scheduled Transport
 name: Publish verified Lumira update
 on:
   push:
