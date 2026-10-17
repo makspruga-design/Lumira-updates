@@ -1,5 +1,5 @@
 {
-  "version": "0.19.16",
+  "version": "0.19.17",
   "url": "https://lumira-0196-builder.onrender.com/payload.json",
-  "purpose": "Summon-card inventory and collection book, pack claim flow, autonomous field skills, friends, public collections, nearby party rewards, live duels and direct exchange; cumulative over v0.19.15"
+  "purpose": "Collection book unlocks cards only after successful summon; selling, trading, transferring or merely owning a card does not collect it; cumulative over v0.19.16"
 }
