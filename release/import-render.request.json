@@ -1,5 +1,5 @@
 {
-  "version": "0.19.15",
+  "version": "0.19.16",
   "url": "https://lumira-0196-builder.onrender.com/payload.json",
-  "purpose": "Saved auto-battle min/max target level filter with range UI; cumulative over v0.19.14"
+  "purpose": "Summon-card inventory and collection book, pack claim flow, autonomous field skills, friends, public collections, nearby party rewards, live duels and direct exchange; cumulative over v0.19.15"
 }
