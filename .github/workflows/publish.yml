@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.16 Card Collection Social
+# release trigger: Lumira 0.19.17 Summon-only Collection
 name: Publish verified Lumira update
 on:
   push:
