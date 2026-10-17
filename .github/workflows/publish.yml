@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.10 Pack Shop UI
+# release trigger: Lumira 0.19.11 Christmas Event
 name: Publish verified Lumira update
 on:
   push:
