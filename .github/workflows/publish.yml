@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.18 Premium Summon Cards
+# release trigger: Lumira 0.19.19 Finished Common Summon Cards
 name: Publish verified Lumira update
 on:
   push:
