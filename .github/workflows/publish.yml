@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.8 Regional Wildlife Progression
+# release trigger: Lumira 0.19.9 Tiered Pack Rewards
 name: Publish verified Lumira update
 on:
   push:
