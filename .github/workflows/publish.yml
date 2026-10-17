@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.7 Scheduled Transport
+# release trigger: Lumira 0.19.8 Regional Wildlife Progression
 name: Publish verified Lumira update
 on:
   push:
