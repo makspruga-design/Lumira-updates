@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.9 Tiered Pack Rewards
+# release trigger: Lumira 0.19.10 Pack Shop UI
 name: Publish verified Lumira update
 on:
   push:
