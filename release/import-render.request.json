@@ -1,5 +1,5 @@
 {
-  "version": "0.19.14",
+  "version": "0.19.15",
   "url": "https://lumira-0196-builder.onrender.com/payload.json",
-  "purpose": "Live online nickname roster in HUD and Mini-online player list with locations; cumulative over v0.19.13"
+  "purpose": "Saved auto-battle min/max target level filter with range UI; cumulative over v0.19.14"
 }
