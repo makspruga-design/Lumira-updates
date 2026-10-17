@@ -1,88 +1,83 @@
 # Lumira public OTA release protocol
 
-This PUBLIC repository is the publication/verification side of Lumira's in-game updater. It must never become a copy of the private game source.
+This PUBLIC repository is the verification/publication side of Lumira's in-game updater. It must never become a copy of the private game source.
 
 ## Canonical repositories
 
 - PRIVATE source: `makspruga-design/Creature-rpg-2d`
 - PUBLIC OTA channel: `makspruga-design/Lumira-updates`
 - Native updater id: `lumira-017`
-- Current native engine line: Godot 4.3
+- Native engine line: Godot 4.3
 
-## Current canonical release route
+## PRIMARY PUBLIC ROUTE — GENERIC RENDER IMPORT
 
-The preferred path for normal content/script updates is now **Render-first**, proven by Lumira 0.19.6:
+For normal content/script updates, PRIVATE source is tested/built on Render first. This PUBLIC repo then imports only the signed candidate.
 
-1. Change is made and committed in the PRIVATE source repository.
-2. Real Godot 4.3 regression is executed on Render/private build infrastructure.
-3. Dedicated Render builder compiles/exports the changed OTA resources.
-4. Android/Windows manifests are signed with PRIVATE signing material outside this PUBLIC repository.
-5. Only compiled packs + signed manifests/candidate are transferred here.
-6. `tools/publish.py` independently verifies signatures and every referenced resource.
-7. The release is published atomically only after verification succeeds.
-8. Latest release must contain both `lumira-017-android.json` and `lumira-017-windows.json`.
+Canonical sequence, proven by **Lumira 0.19.7**:
 
-Do not wait on private GitHub Actions when they fail before provisioning a runner. Runner-less jobs are not test results.
+1. PRIVATE source is changed and tested with real Godot 4.3 on Render.
+2. PRIVATE Render OTA builder compiles only changed resources and signs cumulative Android/Windows manifests.
+3. PUBLIC `release/import-render.request.json` states the expected version and Render candidate URL.
+4. `.github/workflows/import-render-candidate.yml` downloads the candidate directly from Render.
+5. Import workflow verifies the candidate's internal archive SHA-256.
+6. Import workflow runs `tools/publish.py` with `LUMIRA_VERIFY_ONLY=1`, verifying signatures/resources with the public key.
+7. Only after verification succeeds is the candidate promoted to `release/payload.json`.
+8. Standard `.github/workflows/publish.yml` performs the full verification/publication step and creates the GitHub Release.
+9. Confirm Android + Windows manifests and all new resource packs exist before telling the user to update.
 
-## Proven reference: Lumira 0.19.6
+Note: a commit pushed by a workflow using `GITHUB_TOKEN` does not automatically trigger another workflow. If `publish.yml` does not start after the import commit, use an explicit safe trigger/manual dispatch rather than assuming publication occurred.
 
-0.19.6 established the preferred workflow for gameplay script/content updates:
+## Proven reference: Lumira 0.19.7
 
-- Creature Motion V4 was tested by real Godot 4.3 on Render.
-- Runtime regression result: **237 checks; 0 failures**.
-- The source PR was merged only after the real Godot run.
-- A dedicated Render builder created the signed OTA candidate.
-- This PUBLIC repo verified and published `v0.19.6`.
-- Release contains both Android and Windows manifests.
+- Feature: scheduled real ferry and airship travel.
+- PRIVATE Render/Godot regression: **71 checks; 0 failures**.
+- Signed candidate produced by the persistent Render builder.
+- Generic Render importer downloaded the candidate and its public verifier step completed successfully.
+- Standard public publisher completed successfully.
+- Public tag: `v0.19.7`.
+- Assets include `lumira-017-android.json`, `lumira-017-windows.json`, and the new compiled transport resource packs.
 
-Future chats/agents should copy this pattern first for normal OTA updates.
+This is now the first reference future chats/agents should copy.
+
+## Earlier references
+
+- **0.19.5:** scene-only minimal/stub hotfix; useful only for tiny safe scene/resource fixes.
+- **0.19.6:** established Render-first private script/content build with Creature Motion V4; Godot regression 237 checks / 0 failures.
 
 ## Security boundary
 
-Never commit private game source, source archives, signing keystores, PATs/tokens, or other private credentials here.
+Never commit private game source, source archives, signing keystores, PATs/tokens, or private credentials here.
 
-This repo may contain:
+Allowed PUBLIC contents include:
 
-- compiled content resources,
-- signed Android/Windows manifests,
+- compiled content resource packs,
+- signed Android/Windows manifests/candidates,
 - SHA-256/size metadata,
-- the public verification key (`update-public.pem`),
-- release verification/publication tooling.
+- `update-public.pem`,
+- release import/verification/publication tooling.
 
 The private signing key stays in the PRIVATE source/build environment. This repo verifies signatures with the public key only.
 
-## Standard publication contract
+## Publication contract
 
-A candidate placed at `release/payload.json` is not trusted merely because it exists. `.github/workflows/publish.yml` runs `tools/publish.py`, which must verify the candidate signatures/resources before publishing the GitHub Release.
+A candidate in `release/payload.json` is not trusted merely because it exists. `tools/publish.py` must verify signatures/resources before a release is published.
 
-After success, always verify the new latest release contains:
+After success, always confirm the latest release contains:
 
 - `lumira-017-android.json`
 - `lumira-017-windows.json`
 - every newly referenced resource pack
 
-The game mounts a downloaded pending content update on restart, so users must fully restart the game after installation.
-
-## Special fallback reference: 0.19.5
-
-0.19.5 used a scene-only minimal/stub compile because private GitHub Actions were not provisioning runners. That technique remains valid only for tiny resource/scene hotfixes that can be compiled without exposing private gameplay source.
-
-Reference implementation retained here:
-
-- `tools/manual_0195.py`
-- `.github/workflows/manual-0195.yml`
-- `release/manual-0195-*.json`
-
-For changed gameplay scripts, prefer the 0.19.6 Render-first private build route instead.
+The game mounts pending content on startup, so the user must fully restart the game after installation.
 
 ## Agent/chat instruction
 
 Before creating a Lumira update:
 
 1. Read PRIVATE `docs/OTA_RELEASE_PLAYBOOK.md`.
-2. Inspect the current PRIVATE `main`, `updates/release.json`, and latest PUBLIC release.
-3. Prefer Render/Godot 4.3 validation + Render OTA builder immediately.
-4. Do not spend time waiting for private GitHub Actions if no runner is provisioned.
-5. Preserve the cumulative signed OTA model.
-6. Do not default to a full APK unless the change is native/protected.
-7. Do not tell the user an update is available until the public release and platform manifests are actually present.
+2. Prefer Render/Godot 4.3 validation immediately; do not wait for broken private runners.
+3. Build/sign in PRIVATE Render infrastructure.
+4. Use the generic PUBLIC `import-render-candidate.yml` bridge.
+5. Require successful public verification and publication.
+6. Do not tell the user the update is available until the public release and platform manifests are actually present.
+7. Do not default to a full APK unless the requested change is native/protected.
