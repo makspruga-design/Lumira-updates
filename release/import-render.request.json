@@ -1,5 +1,5 @@
 {
-  "version": "0.19.18",
+  "version": "0.19.19",
   "url": "https://lumira-0196-builder.onrender.com/payload.json",
-  "purpose": "Premium summon-card faces plus the shared blue-gold crystal card back in inventory, loot, pack rewards and ground drops; collection shows premium face mini-cards; raw WebP is OTA-safe for existing installs; cumulative over v0.19.17"
+  "purpose": "Finished full 384x384 common summon-card fronts for all 12 base creatures; local per-species WebP assets with gray common rarity arch, high drop chance, Stage 1, creature art, name, stats, tags and COMMON plaque; cumulative over v0.19.18"
 }
