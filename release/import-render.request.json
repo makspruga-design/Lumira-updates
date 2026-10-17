@@ -1,5 +1,5 @@
 {
-  "version": "0.19.12",
+  "version": "0.19.13",
   "url": "https://lumira-0196-builder.onrender.com/payload.json",
-  "purpose": "Offline pack-shop OTA compatibility hotfix: remove PackShopUI global class-cache dependency while preserving cumulative 0.19.11 content"
+  "purpose": "Visual Polish V1: wilderness biomes, refined creature pixel art/motion, elemental skill VFX, real hero equipment and richer field loot; cumulative over v0.19.12"
 }
