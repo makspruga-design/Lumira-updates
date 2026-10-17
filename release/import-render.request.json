@@ -1,5 +1,5 @@
 {
-  "version": "0.19.17",
+  "version": "0.19.18",
   "url": "https://lumira-0196-builder.onrender.com/payload.json",
-  "purpose": "Collection book unlocks cards only after successful summon; selling, trading, transferring or merely owning a card does not collect it; cumulative over v0.19.16"
+  "purpose": "Premium summon-card faces plus the shared blue-gold crystal card back in inventory, loot, pack rewards and ground drops; collection shows premium face mini-cards; raw WebP is OTA-safe for existing installs; cumulative over v0.19.17"
 }
