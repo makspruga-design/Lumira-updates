@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.15 Auto-battle Level Filter
+# release trigger: Lumira 0.19.16 Card Collection Social
 name: Publish verified Lumira update
 on:
   push:
