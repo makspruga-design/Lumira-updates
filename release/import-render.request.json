@@ -1,5 +1,5 @@
 {
-  "version": "0.19.11",
+  "version": "0.19.12",
   "url": "https://lumira-0196-builder.onrender.com/payload.json",
-  "purpose": "Christmas event: Santa house and toy factory, 12 event creatures, festive loot and global rarity-based summon-card drop odds"
+  "purpose": "Offline pack-shop OTA compatibility hotfix: remove PackShopUI global class-cache dependency while preserving cumulative 0.19.11 content"
 }
