@@ -1,7 +1,7 @@
 {
-  "version": "0.19.25",
-  "url": "https://lumira-0196-builder.onrender.com/payload.json?source=e1b5cf2837fb02e73a0d54ce24ffe00d75a32a3f",
-  "source_commit": "e1b5cf2837fb02e73a0d54ce24ffe00d75a32a3f",
-  "payload_sha256": "fbe38e74f175fa0dccfc1faa966bccc4b48a0a2f1142b48e032d1dd56f111ee1",
-  "purpose": "Mobile-only performance optimization: lower 3D render scale on phones, cheaper town shadows/omni lighting, and event-driven local/remote hero canvas redraws. Desktop unchanged. Cumulative over 0.19.24; native017 unchanged."
+  "version": "0.19.26",
+  "url": "https://lumira-0196-builder.onrender.com/payload.json?source=1608a7d59aee56ae366ce2993cab5fdc295bef6c",
+  "source_commit": "1608a7d59aee56ae366ce2993cab5fdc295bef6c",
+  "payload_sha256": "501ca65c333e9ce2691e67d81dcfead7dc57313208d416d095b818817e913069",
+  "purpose": "Straighter hero/heroine support knees on front diagonals, shorter walking stride and lower walking clearance, taller running pelvis and smoother intermediate stride growth. Existing 0.19.25 mobile optimizations preserved. Cumulative native017 content update."
 }
