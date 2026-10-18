@@ -1,6 +1,6 @@
 {
-  "version": "0.19.21",
+  "version": "0.19.22",
   "url": "https://lumira-0196-builder.onrender.com/payload.json",
-  "source_commit": "293b31f37a88ca50b50b3b260b09f9e5174610b4",
-  "purpose": "Visual stage 1: natural hero/heroine walking, heel strike, forefoot bend and toe push-off, distance-matched ground contact, coordinated body/arms and walk/jog; cumulative over v0.19.20"
+  "source_commit": "7ae9fbfae5be086b0ec78a957551e00a38fe6541",
+  "purpose": "Visual stage 2: consistent names for all 100 creatures, 88 renamed, Sparky and preserved Nightwing; live Russian card titles with stable IDs and save progression; cumulative over v0.19.21"
 }
