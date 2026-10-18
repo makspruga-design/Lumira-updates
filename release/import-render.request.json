@@ -1,7 +1,7 @@
 {
-  "version": "0.19.24",
-  "url": "https://lumira-0196-builder.onrender.com/payload.json?source=c4feaaab8a68305c0a4e1ff749875e0c81aa0064",
-  "source_commit": "c4feaaab8a68305c0a4e1ff749875e0c81aa0064",
-  "payload_sha256": "729ffc1d23ce4fb840afbdfa2bdcd5d27504cdb5bc1608e0d73d1849fb0e667a",
-  "purpose": "Hide the overhead name/level label above the active companion while keeping wild creature and boss labels. Cumulative over 0.19.23; native017 unchanged."
+  "version": "0.19.25",
+  "url": "https://lumira-0196-builder.onrender.com/payload.json?source=e1b5cf2837fb02e73a0d54ce24ffe00d75a32a3f",
+  "source_commit": "e1b5cf2837fb02e73a0d54ce24ffe00d75a32a3f",
+  "payload_sha256": "fbe38e74f175fa0dccfc1faa966bccc4b48a0a2f1142b48e032d1dd56f111ee1",
+  "purpose": "Mobile-only performance optimization: lower 3D render scale on phones, cheaper town shadows/omni lighting, and event-driven local/remote hero canvas redraws. Desktop unchanged. Cumulative over 0.19.24; native017 unchanged."
 }
