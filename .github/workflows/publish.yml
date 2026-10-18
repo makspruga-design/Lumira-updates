@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.26 Hero Diagonal Gait
+# release trigger: Lumira 0.19.27 Hero Silhouette and Relaxed Gait
 name: Publish verified Lumira update
 on:
   push:
