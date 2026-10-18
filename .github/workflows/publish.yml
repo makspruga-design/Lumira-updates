@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.22 Creature Names and Russian Card Titles
+# release trigger: Lumira 0.19.23 Hero Posture, Complete Boots and Cosmetic Layers
 name: Publish verified Lumira update
 on:
   push:
