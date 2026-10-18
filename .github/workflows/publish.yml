@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.21 Natural Hero Walking and Heel-To-Toe Roll
+# release trigger: Lumira 0.19.22 Creature Names and Russian Card Titles
 name: Publish verified Lumira update
 on:
   push:
