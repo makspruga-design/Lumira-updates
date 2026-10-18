@@ -1,7 +1,7 @@
 {
-  "version": "0.19.27",
-  "url": "https://lumira-0196-builder.onrender.com/payload.json?source=fab20b18409a06ed00d40f48f873489cf96b1121",
-  "source_commit": "fab20b18409a06ed00d40f48f873489cf96b1121",
-  "payload_sha256": "1e88310ad206767ff013780f8d9cebd1b0172f8306636254906d0153ded2b097",
-  "purpose": "Publish tested hero leg silhouette alignment, earlier smooth foot lift and relaxed arm swing; preserve all 0.19.26 content."
+  "version": "0.19.28",
+  "url": "https://lumira-0196-builder.onrender.com/payload.json?source=2a6565760137715ca769c9d717ee1d772aa4725b",
+  "source_commit": "2a6565760137715ca769c9d717ee1d772aa4725b",
+  "payload_sha256": "7190600fe408e967f47e178bdd172fd83b3b702b7e64ea20b1da7b28c2e799bf",
+  "purpose": "Publish expanded main city, corner castle, redesigned arena, 300-seat open market with saved seller signs and creature level-up effect. Premerge Render QA and live wide-city presence smoke passed; native017 retained."
 }
