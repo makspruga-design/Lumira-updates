@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.24 Hide Active Companion Overhead Label
+# release trigger: Lumira 0.19.25 Mobile Performance
 name: Publish verified Lumira update
 on:
   push:
