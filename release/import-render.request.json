@@ -1,6 +1,6 @@
 {
-  "version": "0.19.20",
+  "version": "0.19.21",
   "url": "https://lumira-0196-builder.onrender.com/payload.json",
-  "source_commit": "749b142521e012fc8c432b0c0998278cfbc117e5",
-  "purpose": "Reviewed pack-menu/mixed-reward fixes, event-driven card presentation and correct snow-factory atlas; cumulative over v0.19.19"
+  "source_commit": "293b31f37a88ca50b50b3b260b09f9e5174610b4",
+  "purpose": "Visual stage 1: natural hero/heroine walking, heel strike, forefoot bend and toe push-off, distance-matched ground contact, coordinated body/arms and walk/jog; cumulative over v0.19.20"
 }
