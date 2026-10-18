@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.23 Hero Posture, Complete Boots and Cosmetic Layers
+# release trigger: Lumira 0.19.24 Hide Active Companion Overhead Label
 name: Publish verified Lumira update
 on:
   push:
