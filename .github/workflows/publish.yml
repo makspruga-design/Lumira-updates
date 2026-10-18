@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.27 Hero Silhouette and Relaxed Gait
+# release trigger: Lumira 0.19.28 Expanded City and 300-Stall Market
 name: Publish verified Lumira update
 on:
   push:
