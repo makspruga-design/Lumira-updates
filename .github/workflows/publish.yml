@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.25 Mobile Performance
+# release trigger: Lumira 0.19.26 Hero Diagonal Gait
 name: Publish verified Lumira update
 on:
   push:
