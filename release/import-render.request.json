@@ -1,7 +1,7 @@
 {
-  "version": "0.19.26",
-  "url": "https://lumira-0196-builder.onrender.com/payload.json?source=1608a7d59aee56ae366ce2993cab5fdc295bef6c",
-  "source_commit": "1608a7d59aee56ae366ce2993cab5fdc295bef6c",
-  "payload_sha256": "501ca65c333e9ce2691e67d81dcfead7dc57313208d416d095b818817e913069",
-  "purpose": "Straighter hero/heroine support knees on front diagonals, shorter walking stride and lower walking clearance, taller running pelvis and smoother intermediate stride growth. Existing 0.19.25 mobile optimizations preserved. Cumulative native017 content update."
+  "version": "0.19.27",
+  "url": "https://lumira-0196-builder.onrender.com/payload.json?source=fab20b18409a06ed00d40f48f873489cf96b1121",
+  "source_commit": "fab20b18409a06ed00d40f48f873489cf96b1121",
+  "payload_sha256": "1e88310ad206767ff013780f8d9cebd1b0172f8306636254906d0153ded2b097",
+  "purpose": "Publish tested hero leg silhouette alignment, earlier smooth foot lift and relaxed arm swing; preserve all 0.19.26 content."
 }
