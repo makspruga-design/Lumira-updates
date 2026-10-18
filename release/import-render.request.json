@@ -1,6 +1,7 @@
 {
-  "version": "0.19.22",
-  "url": "https://lumira-0196-builder.onrender.com/payload.json",
-  "source_commit": "7ae9fbfae5be086b0ec78a957551e00a38fe6541",
-  "purpose": "Visual stage 2: consistent names for all 100 creatures, 88 renamed, Sparky and preserved Nightwing; live Russian card titles with stable IDs and save progression; cumulative over v0.19.21"
+  "version": "0.19.23",
+  "url": "https://lumira-0196-builder.onrender.com/payload.json?source=8860f1fb770efce84b44e1239f73f8a591f334dd",
+  "source_commit": "8860f1fb770efce84b44e1239f73f8a591f334dd",
+  "payload_sha256": "77cd40b740c8e98d810211c11772dd90508188a51a90da6e4bd9eada4bdb6e7f",
+  "purpose": "Improved hero walk posture, preserved walk/run transition; complete boot pixels, ground-safe fragment depth and validated future cosmetic atlas layers. Cumulative over0.19.22; native017 unchanged."
 }

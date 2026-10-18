@@ -32,6 +32,12 @@ jobs:
           assert url.startswith('https://') and '.onrender.com/' in url
           print('version='+version)
           print('url='+url)
+          source=str(r.get('source_commit',''))
+          payload_sha=str(r.get('payload_sha256',''))
+          assert not source or (len(source)==40 and all(c in '0123456789abcdef' for c in source))
+          assert not payload_sha or (len(payload_sha)==64 and all(c in '0123456789abcdef' for c in payload_sha))
+          print('source_commit='+source)
+          print('payload_sha256='+payload_sha)
           PY
       - name: Fetch signed candidate from Render builder
         run: |
@@ -41,7 +47,12 @@ jobs:
           python - <<'PY'
           import base64,hashlib,json
           expected='${{ steps.req.outputs.version }}'
-          p=json.load(open('/tmp/payload.json',encoding='utf-8'))
+          raw=open('/tmp/payload.json','rb').read()
+          p=json.loads(raw)
+          expected_source='${{ steps.req.outputs.source_commit }}'
+          expected_payload_sha='${{ steps.req.outputs.payload_sha256 }}'
+          assert not expected_source or p['source_commit']==expected_source, 'Unexpected candidate source commit'
+          assert not expected_payload_sha or hashlib.sha256(raw).hexdigest()==expected_payload_sha, 'Unexpected candidate payload bytes'
           assert p['version']==expected, (p.get('version'), expected)
           assert len(p['source_commit'])==40
           assert len(p['archive_sha256'])==64
