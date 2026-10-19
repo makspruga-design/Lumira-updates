@@ -1,7 +1,7 @@
 {
-  "version": "0.19.30",
-  "url": "https://lumira-0196-builder.onrender.com/payload.json?source=0e444f1c0cc5279f76c462b88ff283497c5aedb0",
-  "source_commit": "0e444f1c0cc5279f76c462b88ff283497c5aedb0",
-  "payload_sha256": "0ddbd907af524f167660e87eb82fc120a74d05afe5ca6a52fdcb16ab50374b10",
-  "purpose": "Fix wardrobe buttons launched from Inventory: retain the live WardrobeUI controller for the modal lifetime so real clothing buttons apply, persist and immediately refresh the hero. Real Godot 4.3 production-path wardrobe regression passed; cumulative over v0.19.29; native017 preserved."
+  "version": "0.19.31",
+  "url": "https://lumira-0196-builder.onrender.com/payload.json?source=d12aab0c477e1b46c1ee884c5baafa1069d5abd5",
+  "source_commit": "d12aab0c477e1b46c1ee884c5baafa1069d5abd5",
+  "payload_sha256": "530f926f9090efe2bc1afad2818c6befd9d6c85a9298c7b79c1a7d80b7b258c3",
+  "purpose": "Restore house roofs lost by nested static batching, recolor city fortifications stone gray, and fully enclose the trading district with two real arch entrances. Exact release source passed Godot 4.3 painted-city, wardrobe and mobile regressions; cumulative over v0.19.30; native017 preserved."
 }
