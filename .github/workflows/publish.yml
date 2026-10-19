@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.33 Painted Wardrobe V3
+# release trigger: Lumira 0.19.34 Bestiary40
 name: Publish verified Lumira update
 on:
   push:
