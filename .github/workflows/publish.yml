@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.30 Wardrobe Button Lifecycle Fix
+# release trigger: Lumira 0.19.31 City Roofs and Market Walls
 name: Publish verified Lumira update
 on:
   push:
