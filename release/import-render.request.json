@@ -1,7 +1,7 @@
 {
-  "version": "0.19.33",
-  "url": "https://lumira-0196-builder.onrender.com/payload.json?source=a0ca5780018f29807e4f9268e3cc48f58a309098",
-  "source_commit": "a0ca5780018f29807e4f9268e3cc48f58a309098",
-  "payload_sha256": "4525c49c4164c28b29b337e0506985c43594b747cf4bd838a16d2bfa64233749",
-  "purpose": "Publish the real painted Wardrobe V3 for Lumira: three distinct costume atlases (Forest Warden, Royal Guard, Star Scholar), cohesive upper body from torso through shoulders and sleeves to wrists, independently swappable headwear, hair, gloves, trousers and boots, and unchanged approved gait/rig. Exact release source passed real Godot 4.3 atlas-art, city wardrobe, mobile performance and painted-city regressions; cumulative over v0.19.32; native017 preserved."
+  "version": "0.19.34",
+  "url": "https://lumira-0196-builder.onrender.com/payload.json?source=73e0410d348225dcd7575556bc644fd60c0750c4",
+  "source_commit": "73e0410d348225dcd7575556bc644fd60c0750c4",
+  "payload_sha256": "317302b01f1077c6a486824bf1a70798dfd1ac3ff4497ebc847918bb8dc02694",
+  "purpose": "Publish Lumira Bestiary40: retain the original first 12 creature lines and add 40 new unique lines (10 flying, 10 hovering, 10 crawling, 10 jumping), three level-driven forms at 1-13/14-29/30-50 with no XP reset, eight camera-relative directions, level-appropriate world pools, battle/cards/arena integration and save migration. Exact source passed real Godot 4.3 Bestiary40, Wardrobe V3, mobile performance and painted-city regressions on Render; cumulative over v0.19.33; native017 preserved."
 }
