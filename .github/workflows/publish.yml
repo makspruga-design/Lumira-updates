@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.32 Modular Rig-Locked Wardrobe
+# release trigger: Lumira 0.19.33 Painted Wardrobe V3
 name: Publish verified Lumira update
 on:
   push:
