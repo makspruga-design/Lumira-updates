@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.31 City Roofs and Market Walls
+# release trigger: Lumira 0.19.32 Modular Rig-Locked Wardrobe
 name: Publish verified Lumira update
 on:
   push:
