@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.29 City Polish and Independent Hero Wardrobe
+# release trigger: Lumira 0.19.30 Wardrobe Button Lifecycle Fix
 name: Publish verified Lumira update
 on:
   push:
