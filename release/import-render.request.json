@@ -1,7 +1,7 @@
 {
-  "version": "0.19.32",
-  "url": "https://lumira-0196-builder.onrender.com/payload.json?source=e632974d8e5ce00c2947f6046479fa8c87d12ed7",
-  "source_commit": "e632974d8e5ce00c2947f6046479fa8c87d12ed7",
-  "payload_sha256": "05309285d7b7fed9b39b60267183f467b4678a54e65edd0b1d24b77945f2011e",
-  "purpose": "Rebuild Lumira wardrobe as six independent rig-locked visual modules: headwear, torso, sleeves/arms, gloves, trousers and boots. Preserve legacy saves, ready outfit sets and mixed pieces while keeping the approved hero gait mathematically unchanged. Exact release source passed real Godot 4.3 wardrobe, mobile and painted-city regressions; cumulative over v0.19.31; native017 preserved."
+  "version": "0.19.33",
+  "url": "https://lumira-0196-builder.onrender.com/payload.json?source=a0ca5780018f29807e4f9268e3cc48f58a309098",
+  "source_commit": "a0ca5780018f29807e4f9268e3cc48f58a309098",
+  "payload_sha256": "4525c49c4164c28b29b337e0506985c43594b747cf4bd838a16d2bfa64233749",
+  "purpose": "Publish the real painted Wardrobe V3 for Lumira: three distinct costume atlases (Forest Warden, Royal Guard, Star Scholar), cohesive upper body from torso through shoulders and sleeves to wrists, independently swappable headwear, hair, gloves, trousers and boots, and unchanged approved gait/rig. Exact release source passed real Godot 4.3 atlas-art, city wardrobe, mobile performance and painted-city regressions; cumulative over v0.19.32; native017 preserved."
 }
