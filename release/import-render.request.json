@@ -1,7 +1,7 @@
 {
-  "version": "0.19.31",
-  "url": "https://lumira-0196-builder.onrender.com/payload.json?source=d12aab0c477e1b46c1ee884c5baafa1069d5abd5",
-  "source_commit": "d12aab0c477e1b46c1ee884c5baafa1069d5abd5",
-  "payload_sha256": "530f926f9090efe2bc1afad2818c6befd9d6c85a9298c7b79c1a7d80b7b258c3",
-  "purpose": "Restore house roofs lost by nested static batching, recolor city fortifications stone gray, and fully enclose the trading district with two real arch entrances. Exact release source passed Godot 4.3 painted-city, wardrobe and mobile regressions; cumulative over v0.19.30; native017 preserved."
+  "version": "0.19.32",
+  "url": "https://lumira-0196-builder.onrender.com/payload.json?source=e632974d8e5ce00c2947f6046479fa8c87d12ed7",
+  "source_commit": "e632974d8e5ce00c2947f6046479fa8c87d12ed7",
+  "payload_sha256": "05309285d7b7fed9b39b60267183f467b4678a54e65edd0b1d24b77945f2011e",
+  "purpose": "Rebuild Lumira wardrobe as six independent rig-locked visual modules: headwear, torso, sleeves/arms, gloves, trousers and boots. Preserve legacy saves, ready outfit sets and mixed pieces while keeping the approved hero gait mathematically unchanged. Exact release source passed real Godot 4.3 wardrobe, mobile and painted-city regressions; cumulative over v0.19.31; native017 preserved."
 }
