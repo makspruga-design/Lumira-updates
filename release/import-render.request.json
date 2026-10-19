@@ -1,7 +1,7 @@
 {
-  "version": "0.19.29",
-  "url": "https://lumira-0196-builder.onrender.com/payload.json?source=fb9f0586765d0554183edf3809ccbbb41eddd3b1",
-  "source_commit": "fb9f0586765d0554183edf3809ccbbb41eddd3b1",
-  "payload_sha256": "5a139dbdcdc6f83f306b11c2114edfb338467bd49a79ec6bf2f4a6cfb12d612e",
-  "purpose": "Publish city and wardrobe update: clear wide plaza, light curbs, market wall, fountain, round pointed castle towers, save table, aligned leg chain and independently equipped pieces for both heroes. Exact final runtime passed premerge and signed Render QA; native017 preserved."
+  "version": "0.19.30",
+  "url": "https://lumira-0196-builder.onrender.com/payload.json?source=0e444f1c0cc5279f76c462b88ff283497c5aedb0",
+  "source_commit": "0e444f1c0cc5279f76c462b88ff283497c5aedb0",
+  "payload_sha256": "0ddbd907af524f167660e87eb82fc120a74d05afe5ca6a52fdcb16ab50374b10",
+  "purpose": "Fix wardrobe buttons launched from Inventory: retain the live WardrobeUI controller for the modal lifetime so real clothing buttons apply, persist and immediately refresh the hero. Real Godot 4.3 production-path wardrobe regression passed; cumulative over v0.19.29; native017 preserved."
 }
