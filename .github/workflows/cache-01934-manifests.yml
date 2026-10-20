@@ -1,0 +1,33 @@
+name: Cache Lumira 0.19.34 manifests for local fallback
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/cache-01934-manifests.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cache:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Download published 0.19.34 platform manifests
+        run: |
+          curl -L --fail --retry 3 -o lumira-017-android.json https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.34/lumira-017-android.json
+          curl -L --fail --retry 3 -o lumira-017-windows.json https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.34/lumira-017-windows.json
+          sha256sum lumira-017-android.json lumira-017-windows.json > manifests.sha256
+      - name: Upload manifests
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumira-01934-manifests
+          retention-days: 1
+          if-no-files-found: error
+          path: |
+            lumira-017-android.json
+            lumira-017-windows.json
+            manifests.sha256
