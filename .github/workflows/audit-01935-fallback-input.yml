@@ -1,0 +1,23 @@
+name: Audit Lumira 0.19.35 fallback input
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/audit-01935-fallback-input.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sha256sum release/fallback-01935-input.json > fallback.sha256
+          python -m json.tool release/fallback-01935-input.json > /dev/null
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fallback-01935-input-audit
+          retention-days: 1
+          path: |
+            release/fallback-01935-input.json
+            fallback.sha256
