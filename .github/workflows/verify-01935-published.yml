@@ -1,0 +1,61 @@
+name: Verify published Lumira 0.19.35
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/verify-01935-published.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install cryptography
+      - name: Download and verify published assets
+        run: |
+          BASE=https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.35
+          curl -L --fail --retry 3 -o /tmp/android.json $BASE/lumira-017-android.json
+          curl -L --fail --retry 3 -o /tmp/windows.json $BASE/lumira-017-windows.json
+          curl -L --fail --retry 3 -o /tmp/gdc.zip $BASE/4973f3fa09ac0a72849b4ec55d9b2dde9c76e63395ad22dfd9678ad995cd05af.zip
+          curl -L --fail --retry 3 -o /tmp/remap.zip $BASE/63584deee15d77f55b57b82a3ec4a5857f0023c72446a005bb01604f22995ecf.zip
+          python - <<'PY'
+          import base64,hashlib,io,json,zipfile
+          from pathlib import Path
+          from cryptography.hazmat.primitives.serialization import load_pem_public_key
+          from cryptography.hazmat.primitives.asymmetric import padding
+          from cryptography.hazmat.primitives import hashes
+          def sha(b): return hashlib.sha256(b).hexdigest()
+          key=load_pem_public_key(Path('update-public.pem').read_bytes())
+          expected={
+            'scripts/creature_motion.gdc':('4973f3fa09ac0a72849b4ec55d9b2dde9c76e63395ad22dfd9678ad995cd05af',14480,Path('/tmp/gdc.zip').read_bytes()),
+            'scripts/creature_motion.gd.remap':('63584deee15d77f55b57b82a3ec4a5857f0023c72446a005bb01604f22995ecf',214,Path('/tmp/remap.zip').read_bytes()),
+          }
+          for resource,(digest,size,data) in expected.items():
+              assert len(data)==size and sha(data)==digest
+              with zipfile.ZipFile(io.BytesIO(data)) as zf:
+                  assert zf.namelist()==[resource] and zf.testzip() is None
+          for platform in ('android','windows'):
+              env=json.loads(Path('/tmp/'+platform+'.json').read_text('utf-8'))
+              raw=base64.b64decode(env['payload'],validate=True)
+              sig=base64.b64decode(env['signature'],validate=True)
+              key.verify(sig,raw,padding.PKCS1v15(),hashes.SHA256())
+              doc=json.loads(raw)
+              assert doc['native_id']=='lumira-017' and doc['platform']==platform
+              assert doc['engine']=='4.3' and doc['protocol']==1
+              assert doc['version']=='0.19.35' and int(doc['version_code'])==72
+              by_resource={p['resource']:p for p in doc['packs']}
+              for resource,(digest,size,_data) in expected.items():
+                  p=by_resource[resource]
+                  assert p['sha256']==digest and int(p['size'])==size
+                  assert '/v0.19.35/'+digest+'.zip' in p['url']
+              print(platform,'published manifest verified; packs',len(doc['packs']))
+          print('PUBLISHED LUMIRA 0.19.35 VERIFIED')
+          PY
