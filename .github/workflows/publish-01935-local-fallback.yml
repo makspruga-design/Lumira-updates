@@ -36,7 +36,7 @@ jobs:
 
           ROOT=Path('release/fallback-01935')
           expected={
-              'meta.json':'d7465c2086d6c260d0d8a7feb214e334c1d3e8e52c17fba2b9b5367a030735f5',
+              'meta.json':'b4a7c2cb9de36687ebaf3fba5bec2e1292406645f63c53e69035d10cd8dca237',
               'gdc-01.txt':'589446fde9908e713bd544b34f55717afc8588f9df168d5ae746e60a4883d8a3',
               'gdc-02.txt':'f474b68850971a17daab756f188d951388011d57e098156da2f8397440686ba5',
               'gdc-03.txt':'fdcf9f2ad2306297b721f8e7848ed8acd3f077380317c73f4cb96dd1b55acc8d',
