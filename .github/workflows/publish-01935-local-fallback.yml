@@ -16,14 +16,14 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: python -m pip install cryptography
-      - name: Rebuild candidate from signed local fallback inputs
+      - name: Verify staged binary chunks and rebuild signed candidate
         run: |
           curl -L --fail --retry 3 -o /tmp/android.json https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.34/lumira-017-android.json
           curl -L --fail --retry 3 -o /tmp/windows.json https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.34/lumira-017-windows.json
@@ -34,18 +34,43 @@ jobs:
           from cryptography.hazmat.primitives.asymmetric import padding
           from cryptography.hazmat.primitives import hashes
 
-          inp_path=Path('release/fallback-01935-input.json')
-          expected_input_sha='309af061160cec38c6a6565083743db93f5602d65e428b045e7b8e0d74a31c9c'
-          assert hashlib.sha256(inp_path.read_bytes()).hexdigest()==expected_input_sha, 'fallback input bytes changed'
-          inp=json.loads(inp_path.read_text('utf-8'))
-          assert inp['version']=='0.19.35' and inp['code']==72
-          assert inp['previous_version']=='0.19.34' and inp['previous_code']==71
-          assert inp['source_content_sha256']=='bce7ffc0d8cfb1721632a81c37d9a38206c86c74a8908ed9e4d3221e2dede3ee'
+          ROOT=Path('release/fallback-01935')
+          expected={
+              'meta.json':'d7465c2086d6c260d0d8a7feb214e334c1d3e8e52c17fba2b9b5367a030735f5',
+              'gdc-01.txt':'589446fde9908e713bd544b34f55717afc8588f9df168d5ae746e60a4883d8a3',
+              'gdc-02.txt':'f474b68850971a17daab756f188d951388011d57e098156da2f8397440686ba5',
+              'gdc-03.txt':'fdcf9f2ad2306297b721f8e7848ed8acd3f077380317c73f4cb96dd1b55acc8d',
+              'gdc-04.txt':'41dbf4a968d2716c2a5868cb5e0bede9f2cded8f3ea5398fe195d87ecb5f3357',
+              'gdc-05.txt':'a12ee14b436b53e48a32f3b612038c94ccb9dc08bd4b91f700a4c9a8126f2457',
+          }
+          def sha(b): return hashlib.sha256(b).hexdigest()
+          for name,digest in expected.items():
+              actual=sha((ROOT/name).read_bytes())
+              assert actual==digest, f'{name} changed: {actual}'
+          meta=json.loads((ROOT/'meta.json').read_text('utf-8'))
+          assert meta['version']=='0.19.35' and meta['code']==72
+          assert meta['previous_version']=='0.19.34' and meta['previous_code']==71
+          assert meta['source_content_sha256']=='bce7ffc0d8cfb1721632a81c37d9a38206c86c74a8908ed9e4d3221e2dede3ee'
+
+          gdc_b64=''.join((ROOT/f'gdc-{i:02d}.txt').read_text('ascii') for i in range(1,6))
+          gdc_pack=base64.b64decode(gdc_b64,validate=True)
+          remap_pack=base64.b64decode(meta['remap']['base64'],validate=True)
+          assert len(gdc_pack)==meta['gdc']['size'] and sha(gdc_pack)==meta['gdc']['sha256']
+          assert len(remap_pack)==meta['remap']['size'] and sha(remap_pack)==meta['remap']['sha256']
+          resources={
+              'scripts/creature_motion.gdc':(gdc_pack,meta['gdc']),
+              'scripts/creature_motion.gd.remap':(remap_pack,meta['remap']),
+          }
+          for resource,(pack,_m) in resources.items():
+              with zipfile.ZipFile(io.BytesIO(pack)) as zf:
+                  assert zf.namelist()==[resource], (resource,zf.namelist())
+                  assert zf.testzip() is None
+          print('Staged compiled packs verified:',len(gdc_pack),len(remap_pack),'bytes')
+
           key=load_pem_public_key(Path('update-public.pem').read_bytes())
-          tag='v'+inp['version']
+          tag='v'+meta['version']
           public_root='https://github.com/makspruga-design/Lumira-updates/releases/download/'
           def compact(v): return json.dumps(v,ensure_ascii=False,separators=(',',':')).encode('utf-8')
-          def sha(b): return hashlib.sha256(b).hexdigest()
           def archive_zip(entries):
               bio=io.BytesIO()
               with zipfile.ZipFile(bio,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as zf:
@@ -54,37 +79,55 @@ jobs:
                       zf.writestr(info,data)
               return bio.getvalue()
 
-          asset_bytes={};new_packs={}
-          for resource,meta in sorted(inp['packs'].items()):
-              b=base64.b64decode(meta['base64'],validate=True)
-              assert len(b)==meta['size'] and sha(b)==meta['sha256']
-              with zipfile.ZipFile(io.BytesIO(b)) as zf:
-                  assert zf.namelist()==[resource] and zf.testzip() is None
-              fn=meta['sha256']+'.zip';asset_bytes[fn]=b
-              new_packs[resource]={'sha256':meta['sha256'],'size':meta['size'],'url':public_root+tag+'/'+fn,'resource':resource,'content_sha256':inp['source_content_sha256']}
+          asset_bytes={}
+          new_packs={}
+          for resource,(pack,m) in resources.items():
+              filename=m['sha256']+'.zip'
+              asset_bytes[filename]=pack
+              new_packs[resource]={
+                  'sha256':m['sha256'],
+                  'size':m['size'],
+                  'url':public_root+tag+'/'+filename,
+                  'resource':resource,
+                  'content_sha256':meta['source_content_sha256'],
+              }
 
           manifests={}
+          expected_manifest_sha={
+              'android':'9b1e2a15dffe3673a78dcd5dca1bea98fea9daeba851479980ba07fac5e95dc6',
+              'windows':'5852cdb8e52134d6766c7f948081544946ca012c1fd48e2c0eac1a875c43f69d',
+          }
           for platform in ('android','windows'):
               old=json.loads(Path('/tmp/'+platform+'.json').read_text('utf-8'))
               old_payload=base64.b64decode(old['payload'],validate=True)
               key.verify(base64.b64decode(old['signature'],validate=True),old_payload,padding.PKCS1v15(),hashes.SHA256())
               doc=json.loads(old_payload)
-              assert doc['version']==inp['previous_version'] and doc['version_code']==inp['previous_code']
+              assert doc['version']==meta['previous_version'] and doc['version_code']==meta['previous_code']
               assert doc['native_id']=='lumira-017' and doc['platform']==platform and doc['engine']=='4.3' and doc['protocol']==1
-              doc['version']=inp['version'];doc['version_code']=inp['code'];doc['notes']=inp['notes']
+              doc['version']=meta['version'];doc['version_code']=meta['code'];doc['notes']=meta['notes']
               doc['packs']=[p for p in doc['packs'] if p.get('resource') not in new_packs]+[new_packs[n] for n in sorted(new_packs)]
               raw=compact(doc)
-              sig=base64.b64decode(inp['signatures'][platform],validate=True)
-              key.verify(sig,raw,padding.PKCS1v15(),hashes.SHA256())
-              manifests[f'lumira-017-{platform}.json']=compact({'payload':base64.b64encode(raw).decode('ascii'),'signature':inp['signatures'][platform]})
-              print(platform,'signature verified; packs',len(doc['packs']),'manifest',sha(raw))
+              assert sha(raw)==expected_manifest_sha[platform], (platform,sha(raw))
+              signature=base64.b64decode(meta['signatures'][platform],validate=True)
+              key.verify(signature,raw,padding.PKCS1v15(),hashes.SHA256())
+              manifests[f'lumira-017-{platform}.json']=compact({'payload':base64.b64encode(raw).decode('ascii'),'signature':meta['signatures'][platform]})
+              print(platform,'RSA signature verified; packs',len(doc['packs']),'manifest',sha(raw))
 
           archive=archive_zip({**manifests,**asset_bytes})
-          candidate={'version':inp['version'],'source_commit':inp['source_commit'],'source_run':inp['source_run'],'archive_sha256':sha(archive),'archive_base64':base64.b64encode(archive).decode('ascii')}
-          Path('release/payload.json').write_bytes(compact(candidate))
-          print('candidate',len(archive),'bytes archive; sha256',sha(archive))
+          assert sha(archive)=='b6505b1a84a4b5a49268661ffdc0fe9e56ead8a794c630c14479caa38cd91b19', sha(archive)
+          candidate={
+              'version':meta['version'],
+              'source_commit':meta['source_commit'],
+              'source_run':meta['source_run'],
+              'archive_sha256':sha(archive),
+              'archive_base64':base64.b64encode(archive).decode('ascii'),
+          }
+          payload=compact(candidate)
+          assert sha(payload)=='49e89233907318ee63484e53f4dc835f748ea677bcc0425781138f797ac7462e', sha(payload)
+          Path('release/payload.json').write_bytes(payload)
+          print('Signed candidate reproduced exactly:',len(archive),'archive bytes; payload',len(payload),'bytes')
           PY
-      - name: Verify signatures, resources and publish atomically
+      - name: Verify every reused resource and publish atomically
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
