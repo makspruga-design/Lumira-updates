@@ -1,0 +1,31 @@
+name: Cache official Godot 4.3 for local release fallback
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/cache-godot43-for-local-release.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cache:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Download official Godot 4.3 stable Linux binary
+        run: |
+          curl -L --fail --retry 3 -o godot43.zip https://github.com/godotengine/godot-builds/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
+          sha256sum godot43.zip > godot43.sha256
+      - name: Upload Godot binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: godot43-linux-x86_64
+          retention-days: 1
+          if-no-files-found: error
+          path: |
+            godot43.zip
+            godot43.sha256
