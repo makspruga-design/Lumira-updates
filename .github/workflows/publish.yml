@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.34 Bestiary40
+# release trigger: Lumira 0.19.57 creature art
 name: Publish verified Lumira update
 on:
   push:
