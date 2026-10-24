@@ -1,4 +1,4 @@
-# release trigger: Lumira 0.19.57 creature art
+# release trigger: Lumira 0.19.57 public publisher
 name: Publish verified Lumira update
 on:
   push:
