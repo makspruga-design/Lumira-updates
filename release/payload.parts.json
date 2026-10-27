@@ -1,0 +1,97 @@
+{
+  "version": "0.19.65",
+  "size": 21011934,
+  "sha256": "17b5186bc804fdfd7e508daf819ce10713bf36413e3c1ae34e4841df64230f22",
+  "parts": [
+    {
+      "path": "release/visual-01965/payload-000.part",
+      "size": 1500000,
+      "sha256": "3af557982644c2bfa3f6ebc1d4165820c2006fda0c95930f07a2b37f630061fc",
+      "git_sha": "f8224aba7bf716b0e515c153395caea87c8c79cd"
+    },
+    {
+      "path": "release/visual-01965/payload-001.part",
+      "size": 1500000,
+      "sha256": "d10ffb913a57f1bef08485386767bd318ea890f327269feaf0828166c2636108",
+      "git_sha": "8e76dab84b2e93e6b3d8b24fad015f97d978539b"
+    },
+    {
+      "path": "release/visual-01965/payload-002.part",
+      "size": 1500000,
+      "sha256": "67a9a7e55a9b2be23800317d116d05733f1db1216c82bf14cc4e860ea56e08b5",
+      "git_sha": "dee8c319a487586bff07528ec2a36cbc9fdf6203"
+    },
+    {
+      "path": "release/visual-01965/payload-003.part",
+      "size": 1500000,
+      "sha256": "6e00137e52ad74c99d49f59503e12010add9bae7b7a7c41c7d414ceef87dea4a",
+      "git_sha": "acb9feaeeeef1a069212a9bebde64931cf99fdb6"
+    },
+    {
+      "path": "release/visual-01965/payload-004.part",
+      "size": 1500000,
+      "sha256": "f901afdeb8eedf4c675f3ffc20087c8b57073d99253aba28854138422efc0550",
+      "git_sha": "e39756d2b2aa05ffb3e25b9743ad3d9ec9cb42e8"
+    },
+    {
+      "path": "release/visual-01965/payload-005.part",
+      "size": 1500000,
+      "sha256": "defcab8460e2f4326c74c13c748980d230439902e1654da227fe7c3f7b4be814",
+      "git_sha": "a769ca83a4be5c6b247fd1a4975b697868c43ed5"
+    },
+    {
+      "path": "release/visual-01965/payload-006.part",
+      "size": 1500000,
+      "sha256": "908dda3ad0280366e9db095546341aa041abfda5c7ef086961b3ff05aea21f89",
+      "git_sha": "4b17e5933479ff0d7430ba8fdb5158c90d989836"
+    },
+    {
+      "path": "release/visual-01965/payload-007.part",
+      "size": 1500000,
+      "sha256": "210c4c1298154166ed24e17b5afe1f95c4d31c88f23d6dc17da4b4d2b88ad239",
+      "git_sha": "310095ba46537746f73fe5e645c35bfe4206f714"
+    },
+    {
+      "path": "release/visual-01965/payload-008.part",
+      "size": 1500000,
+      "sha256": "c7cfca323948f5ab5f2439e74dc248aeef7fcb9ec00142426f77382ee8ddc74d",
+      "git_sha": "093d417f35bbc5c2c06886da742a7f5651070ef8"
+    },
+    {
+      "path": "release/visual-01965/payload-009.part",
+      "size": 1500000,
+      "sha256": "012781017edb43e381f31d6fb5aa36cb208744f78f66565cc1a7d17e1a777992",
+      "git_sha": "c64245300c0125684f8ff930e481abb5b0b177be"
+    },
+    {
+      "path": "release/visual-01965/payload-010.part",
+      "size": 1500000,
+      "sha256": "be4529b30e67e2093ba15e7817476420582694aa404578be993ebf8be5ebbf75",
+      "git_sha": "cb9db853b84f14dc2b9312a989947c18a64c08c8"
+    },
+    {
+      "path": "release/visual-01965/payload-011.part",
+      "size": 1500000,
+      "sha256": "a5b4d6fbd4b11727b4eb51627b354146db8138d1060c7d3685e97b85c2e465c3",
+      "git_sha": "4ae625d60349b8555529c5f1c0b575590ed53078"
+    },
+    {
+      "path": "release/visual-01965/payload-012.part",
+      "size": 1500000,
+      "sha256": "8667f15bb52be03324e87eb4d4d62373480e71aa5020bac2a2103e4a1d59389c",
+      "git_sha": "cc8a3d5b4f93c7c352873f12a76709a85aac3403"
+    },
+    {
+      "path": "release/visual-01965/payload-013.part",
+      "size": 1500000,
+      "sha256": "1342070fdea144293cf3432507b66d0d4068c0dbbd428173214fb79c4ca3ea51",
+      "git_sha": "528b0662e338533695848847ef3cfdff4d5aabd2"
+    },
+    {
+      "path": "release/visual-01965/payload-014.part",
+      "size": 11934,
+      "sha256": "0cef0ba4e49c24bf77fae95f4ebccceacd479ba2295157ebdb44de7757a8d7aa",
+      "git_sha": "25da7b3da4cd613202090f71fd738b7ab06a74eb"
+    }
+  ]
+}

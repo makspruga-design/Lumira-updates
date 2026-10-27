@@ -19,6 +19,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install cryptography
+      - name: Reassemble checked candidate parts
+        run: python tools/assemble_payload.py
       - name: Verify signatures, resources and publish atomically
         env:
           GH_TOKEN: ${{ github.token }}
