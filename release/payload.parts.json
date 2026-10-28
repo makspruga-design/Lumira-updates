@@ -1,0 +1,37 @@
+{
+  "version": "0.19.69",
+  "size": 4542237,
+  "sha256": "4105abbb8be8e9ac6e703dcbbb8264fdffecaaf442b297863242e470e7e0389c",
+  "parts": [
+    {
+      "path": "release/creatures-01969/part-00.json.txt",
+      "size": 800000,
+      "sha256": "36efb7a7f9914851550302ac330de47b6e560ba45a7a01352688f0788b35b151"
+    },
+    {
+      "path": "release/creatures-01969/part-01.json.txt",
+      "size": 800000,
+      "sha256": "3d6b7f2ed9d1aa6286af4c6a323df0e5a245e470c917477d3d21f01c1f1464ab"
+    },
+    {
+      "path": "release/creatures-01969/part-02.json.txt",
+      "size": 800000,
+      "sha256": "fa8fffd1b7e4f4e2718c17c10c5f34ed9944be3e653302b90fab15d5e12cb2a0"
+    },
+    {
+      "path": "release/creatures-01969/part-03.json.txt",
+      "size": 800000,
+      "sha256": "e05891a56f7dbc1f1a97b849f511370b8246026419143bd4de7517ff2fa3ac4e"
+    },
+    {
+      "path": "release/creatures-01969/part-04.json.txt",
+      "size": 800000,
+      "sha256": "16fc99acb6a6184f777c7ac3bf3fe6de685c176e6d373c53a9882f639a326d31"
+    },
+    {
+      "path": "release/creatures-01969/part-05.json.txt",
+      "size": 542237,
+      "sha256": "a86b95ff4d1f73fc647b20f6817139768475668f911adf00fa7cb6aa1f3fe02f"
+    }
+  ]
+}
