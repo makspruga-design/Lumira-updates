@@ -27,7 +27,7 @@ import zipfile
 REPO = "makspruga-design/Lumira-updates"
 PREFIX = "https://github.com/" + REPO + "/releases/download/"
 API = "https://api.github.com/repos/" + REPO
-VERIFIER_SHA256 = "4e616e66eeb7350e9ff8355764ee1e8289654e58e2c7c08b0ef16e1483420643"
+VERIFIER_SHA256 = "13d3ecb09631fdea39398dfc4484056bb0ca2b3c548609402e090750ff034904"
 PUBLIC_KEY_SHA256 = "99b858157199c870842c28a99461bbae89b857fe7788e7218cd3f774db70bad4"
 MAX_ARCHIVE = 64 * 1024 * 1024
 MAX_PAYLOAD = 90 * 1024 * 1024
