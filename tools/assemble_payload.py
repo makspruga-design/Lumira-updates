@@ -8,7 +8,7 @@ if index.exists():
  assert 0<len(doc['parts'])<=100
  for part in doc['parts']:
   path=Path(part['path'])
-  assert path.parts[:2] in [('release','visual-01966'),('release','creatures-01969')] and '..' not in path.parts
+  assert path.parts[:2] in [('release','visual-01966'),('release','creatures-01969'),('release','integration-01970')] and '..' not in path.parts
   raw=path.read_bytes()
   assert len(raw)==part['size'] and hashlib.sha256(raw).hexdigest()==part['sha256']
   chunks.append(raw)
@@ -17,3 +17,4 @@ if index.exists():
  assert json.loads(data)['version']==doc['version']
  Path('release/payload.json').write_bytes(data)
  print('Reassembled and SHA256 verified',doc['version'])
+

@@ -1,37 +1,72 @@
 {
-  "version": "0.19.69",
-  "size": 4542237,
-  "sha256": "4105abbb8be8e9ac6e703dcbbb8264fdffecaaf442b297863242e470e7e0389c",
+  "version": "0.19.70",
+  "size": 26367506,
+  "sha256": "8d8fb035856d89f599a2757dc2d1f5ed3817f195a22211ee4cba9917e87d957d",
   "parts": [
     {
-      "path": "release/creatures-01969/part-00.json.txt",
-      "size": 800000,
-      "sha256": "36efb7a7f9914851550302ac330de47b6e560ba45a7a01352688f0788b35b151"
+      "path": "release/integration-01970/parts/part-000.txt",
+      "size": 2097152,
+      "sha256": "7a028e1621502159da7731a494d5d3bf913b988af977cbd6af1079e3caf0832c"
     },
     {
-      "path": "release/creatures-01969/part-01.json.txt",
-      "size": 800000,
-      "sha256": "3d6b7f2ed9d1aa6286af4c6a323df0e5a245e470c917477d3d21f01c1f1464ab"
+      "path": "release/integration-01970/parts/part-001.txt",
+      "size": 2097152,
+      "sha256": "79cacca8ff0585fa4a54ca84e2b000855fd106c6a96852c82e578a7d9a656491"
     },
     {
-      "path": "release/creatures-01969/part-02.json.txt",
-      "size": 800000,
-      "sha256": "fa8fffd1b7e4f4e2718c17c10c5f34ed9944be3e653302b90fab15d5e12cb2a0"
+      "path": "release/integration-01970/parts/part-002.txt",
+      "size": 2097152,
+      "sha256": "ac38f890b46febfb2c33c966b35070f10f0004b73204a6a3c51c4b62d84c8f8e"
     },
     {
-      "path": "release/creatures-01969/part-03.json.txt",
-      "size": 800000,
-      "sha256": "e05891a56f7dbc1f1a97b849f511370b8246026419143bd4de7517ff2fa3ac4e"
+      "path": "release/integration-01970/parts/part-003.txt",
+      "size": 2097152,
+      "sha256": "8565c697cd2ad1d7e19e6c25ee15defbc21227332fd724241527601ac8d3cee5"
     },
     {
-      "path": "release/creatures-01969/part-04.json.txt",
-      "size": 800000,
-      "sha256": "16fc99acb6a6184f777c7ac3bf3fe6de685c176e6d373c53a9882f639a326d31"
+      "path": "release/integration-01970/parts/part-004.txt",
+      "size": 2097152,
+      "sha256": "55d1f4ad193ee6e9088acf7adbeef28c794be54645d1e2132a7eec1d43887fa5"
     },
     {
-      "path": "release/creatures-01969/part-05.json.txt",
-      "size": 542237,
-      "sha256": "a86b95ff4d1f73fc647b20f6817139768475668f911adf00fa7cb6aa1f3fe02f"
+      "path": "release/integration-01970/parts/part-005.txt",
+      "size": 2097152,
+      "sha256": "84b57d65e1793f97f8aeb91f735e1bcb08d835b290d2e751c61306805f1aeeec"
+    },
+    {
+      "path": "release/integration-01970/parts/part-006.txt",
+      "size": 2097152,
+      "sha256": "03262cdffa634db19c4e81fa0e8c4f54d2069f7ac1ad140b1f60e245e00b1e8b"
+    },
+    {
+      "path": "release/integration-01970/parts/part-007.txt",
+      "size": 2097152,
+      "sha256": "f624251e5daee9218dfd3d97708c0973209108ee086a96fde3386211115c2ff9"
+    },
+    {
+      "path": "release/integration-01970/parts/part-008.txt",
+      "size": 2097152,
+      "sha256": "bda08175db76998a39ec15bcb2c228a1c1486cc5a29dcd1db334147dbc181885"
+    },
+    {
+      "path": "release/integration-01970/parts/part-009.txt",
+      "size": 2097152,
+      "sha256": "ef5dd8b3b1e9f64f4c12d5870a1b8401823d94bbb071465e750285e6708c897b"
+    },
+    {
+      "path": "release/integration-01970/parts/part-010.txt",
+      "size": 2097152,
+      "sha256": "51da12418a98e9b378c883388a17dd9e77c65c3cdfa01bbc0d6fc39e589623d4"
+    },
+    {
+      "path": "release/integration-01970/parts/part-011.txt",
+      "size": 2097152,
+      "sha256": "0cc6d2fedbf43a45c95df13d4997cbd182ad803e8d69a1da9de99f73255511d9"
+    },
+    {
+      "path": "release/integration-01970/parts/part-012.txt",
+      "size": 1201682,
+      "sha256": "d54e04f4a62f07ef94f9f47872e473ad6434758fc7fc3970dea52587eead81e4"
     }
   ]
 }

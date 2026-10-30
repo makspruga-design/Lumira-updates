@@ -1,1 +1,9 @@
-{"version":"0.19.69","chunked":true,"source_commit":"eae80a279fb661039a0a22f817eaa267a1570684"}
+{
+  "version": "0.19.70",
+  "source_commit": "c73537562e05c760c0aff643d2c3558411894de8",
+  "archive_sha256": "b4035c640ab8fbb44f8fbc0a887c54a42e4893235180fe223ed4b77303f7b749",
+  "chunked": true,
+  "parts_index": "release/payload.parts.json",
+  "payload_sha256": "8d8fb035856d89f599a2757dc2d1f5ed3817f195a22211ee4cba9917e87d957d",
+  "payload_size": 26367506
+}
