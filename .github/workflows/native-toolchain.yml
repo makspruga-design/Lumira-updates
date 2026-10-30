@@ -1,0 +1,33 @@
+name: Native integration toolchain
+on:
+  push:
+    branches: [integration/native-01970-toolchain]
+    paths: [.github/workflows/native-toolchain.yml]
+permissions:
+  contents: read
+jobs:
+  toolchain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Download and verify official Godot templates
+        shell: bash
+        run: |
+          set -euo pipefail
+          url=https://github.com/godotengine/godot-builds/releases/download/4.3-stable
+          curl --fail --location --retry 3 "$url/Godot_v4.3-stable_export_templates.tpz" -o templates.tpz
+          curl --fail --location --retry 3 "$url/SHA512-SUMS.txt" -o sums.txt
+          python3 - <<'PY'
+          import hashlib,pathlib
+          line=next(x for x in pathlib.Path('sums.txt').read_text().splitlines() if x.endswith('Godot_v4.3-stable_export_templates.tpz'))
+          assert hashlib.sha512(pathlib.Path('templates.tpz').read_bytes()).hexdigest()==line.split()[0]
+          PY
+          unzip templates.tpz templates/linux_release.x86_64
+          chmod +x templates/linux_release.x86_64
+          templates/linux_release.x86_64 --headless --version
+          sha256sum templates/linux_release.x86_64 > templates/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: godot-4.3-linux-release
+          path: templates/
+          retention-days: 7
