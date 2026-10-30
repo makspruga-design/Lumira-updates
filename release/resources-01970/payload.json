@@ -1,0 +1,9 @@
+{
+  "version": "0.19.70",
+  "source_commit": "c73537562e05c760c0aff643d2c3558411894de8",
+  "archive_sha256": "70d2658fd5b6571563212f96253bdf6c301a7762d35f704138948f272efe6d56",
+  "chunked": true,
+  "parts_index": "release/resources-01970/payload.parts.json",
+  "payload_sha256": "af212b83de6ba8da180c4ec53c878ad3d64a7929af6a3df1f334fea69130026e",
+  "payload_size": 81009361
+}

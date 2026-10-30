@@ -1,0 +1,202 @@
+{
+  "version": "0.19.70",
+  "size": 81009361,
+  "sha256": "af212b83de6ba8da180c4ec53c878ad3d64a7929af6a3df1f334fea69130026e",
+  "parts": [
+    {
+      "path": "release/resources-01970/parts/part-000.txt",
+      "size": 2097152,
+      "sha256": "ae89435ee2e71ae4f6a0839010630cf6ac9cd63b20ec113fbab5e7665489aa17"
+    },
+    {
+      "path": "release/resources-01970/parts/part-001.txt",
+      "size": 2097152,
+      "sha256": "73b8c9328b53f46099720ebc1c94c5f1d29665bcc4b2f38ec9ace4af45de9a7a"
+    },
+    {
+      "path": "release/resources-01970/parts/part-002.txt",
+      "size": 2097152,
+      "sha256": "a84e1d6808bf5ad1242ef1fe3699cd0d6380006cb12bc374c321f171a9b1b222"
+    },
+    {
+      "path": "release/resources-01970/parts/part-003.txt",
+      "size": 2097152,
+      "sha256": "3642bd33c41ec8ce2e1726574ff920fe28338083a45ffa079487e4b924dcb4a5"
+    },
+    {
+      "path": "release/resources-01970/parts/part-004.txt",
+      "size": 2097152,
+      "sha256": "95bbdded8d4d6b3818d8dba126a8ce13b3f1eee153deac84940dd434352e22bb"
+    },
+    {
+      "path": "release/resources-01970/parts/part-005.txt",
+      "size": 2097152,
+      "sha256": "61354cf61dd220a16915dac4efeacdfc3d2b2ab3b2337f519b8efa99cc1864ee"
+    },
+    {
+      "path": "release/resources-01970/parts/part-006.txt",
+      "size": 2097152,
+      "sha256": "94e1b4769d99463891fa84e96849b620af6d37f543752caf36d06cf00eb59654"
+    },
+    {
+      "path": "release/resources-01970/parts/part-007.txt",
+      "size": 2097152,
+      "sha256": "0f9de78044feca1c9a389f894361ae37ef99615f7e6b75531039241532a1d77d"
+    },
+    {
+      "path": "release/resources-01970/parts/part-008.txt",
+      "size": 2097152,
+      "sha256": "174287326085aed540958470d60bc74af74e96bd1ab1a02fca514b071841b804"
+    },
+    {
+      "path": "release/resources-01970/parts/part-009.txt",
+      "size": 2097152,
+      "sha256": "38b44636bb4fee2f223f4115327c42241214dbd2f4c1ec3204e8a49f77125605"
+    },
+    {
+      "path": "release/resources-01970/parts/part-010.txt",
+      "size": 2097152,
+      "sha256": "86f3ae497b5f11361572073a0c175ea176497b1bf5750dcceb7dc874531848d6"
+    },
+    {
+      "path": "release/resources-01970/parts/part-011.txt",
+      "size": 2097152,
+      "sha256": "0405debd5d821ba11691566fc050c8993cd7f9a4e941fff7a51234d0b36ec051"
+    },
+    {
+      "path": "release/resources-01970/parts/part-012.txt",
+      "size": 2097152,
+      "sha256": "8e824d7e3eda0206189bb357a463b9acd983a0f11ff16981f858c31948b47359"
+    },
+    {
+      "path": "release/resources-01970/parts/part-013.txt",
+      "size": 2097152,
+      "sha256": "61020e27f63da03d4358a897a9e01218926e979730081ab6e94a42c2e2670e4d"
+    },
+    {
+      "path": "release/resources-01970/parts/part-014.txt",
+      "size": 2097152,
+      "sha256": "136909c304a1b0d7437769757bc6664f881c46c38cdf1bf66c4b14de6caad150"
+    },
+    {
+      "path": "release/resources-01970/parts/part-015.txt",
+      "size": 2097152,
+      "sha256": "866985f3f4fe7e67f6babc6cd5967d921e96fd52f6a1c50b5991fb695260e7dc"
+    },
+    {
+      "path": "release/resources-01970/parts/part-016.txt",
+      "size": 2097152,
+      "sha256": "7b13ad2f315fb0675b8f4590bb4e4e2356c6aefb1d936e02e118eb6dc651e067"
+    },
+    {
+      "path": "release/resources-01970/parts/part-017.txt",
+      "size": 2097152,
+      "sha256": "395ef1c1386b0eb5d9f55806ca215e0de02eb21259454a302c0646d64217ae0a"
+    },
+    {
+      "path": "release/resources-01970/parts/part-018.txt",
+      "size": 2097152,
+      "sha256": "40edf70e5026f282520c69f7496131505fcfb42466925d4c4d5eb6cabcb839e6"
+    },
+    {
+      "path": "release/resources-01970/parts/part-019.txt",
+      "size": 2097152,
+      "sha256": "c7faa14cc22b3200e863cfc1f9112452ffe6cfda9b4899a46c2f3daa56712fc6"
+    },
+    {
+      "path": "release/resources-01970/parts/part-020.txt",
+      "size": 2097152,
+      "sha256": "102c17b3e02f7b1626e7daf5748d1719f383e165670c355d6ff03755d4bc9e48"
+    },
+    {
+      "path": "release/resources-01970/parts/part-021.txt",
+      "size": 2097152,
+      "sha256": "8c02df0f7ff149deb7f29cb59984a0fbd2c85c591fabb8ae0bcc48f1385de7ad"
+    },
+    {
+      "path": "release/resources-01970/parts/part-022.txt",
+      "size": 2097152,
+      "sha256": "dd78cfe6e5fdd463345cc4fe9256afcd89173fc57db6c4931f78021895c199b6"
+    },
+    {
+      "path": "release/resources-01970/parts/part-023.txt",
+      "size": 2097152,
+      "sha256": "a7f389dd233621c6ea31c93aad330fb2bd4d36930a34403fd6e31edb3f4b334e"
+    },
+    {
+      "path": "release/resources-01970/parts/part-024.txt",
+      "size": 2097152,
+      "sha256": "7e6bdd21b3b374b8182904352ed094da3cef6c4aac717b57d529c2e2b4551481"
+    },
+    {
+      "path": "release/resources-01970/parts/part-025.txt",
+      "size": 2097152,
+      "sha256": "25233ac16e07a06a97d21c4a0a78464ad5743cf9e7e7c60375b67424e6875d2a"
+    },
+    {
+      "path": "release/resources-01970/parts/part-026.txt",
+      "size": 2097152,
+      "sha256": "43f889295231f7348e536cc26f3114bbe0a9d07eec35aa5e54aad8d3a72dd425"
+    },
+    {
+      "path": "release/resources-01970/parts/part-027.txt",
+      "size": 2097152,
+      "sha256": "e6f5c4b260b3040b77310295f27f62d973fac6834c93e47121011ee6a112a531"
+    },
+    {
+      "path": "release/resources-01970/parts/part-028.txt",
+      "size": 2097152,
+      "sha256": "606fb03659107fa78f43c711e3a7dfecb9a56547a9a7766ed53b83c1e6a3a21f"
+    },
+    {
+      "path": "release/resources-01970/parts/part-029.txt",
+      "size": 2097152,
+      "sha256": "02a2d9acdbdbd749f8402f6bb9c65aa8675430e498cf45ee6dac6b2e7efab0aa"
+    },
+    {
+      "path": "release/resources-01970/parts/part-030.txt",
+      "size": 2097152,
+      "sha256": "2b92a0ec4c51ab9e90d6cb0580fad87674271426246e9a529919e9524578ed76"
+    },
+    {
+      "path": "release/resources-01970/parts/part-031.txt",
+      "size": 2097152,
+      "sha256": "7bd8c10c641dd77e1c1d82fbd8bb992d420011940c6011c720e453fca77b3973"
+    },
+    {
+      "path": "release/resources-01970/parts/part-032.txt",
+      "size": 2097152,
+      "sha256": "aadcc045a4d224feed5c201d85951278257512b39bc57e4b81d9322f66c74d3b"
+    },
+    {
+      "path": "release/resources-01970/parts/part-033.txt",
+      "size": 2097152,
+      "sha256": "69c407f1c7eaa4045cd6efad7ca79848d21afd62276b664292ced2b6161b225d"
+    },
+    {
+      "path": "release/resources-01970/parts/part-034.txt",
+      "size": 2097152,
+      "sha256": "67e98b1fe21beb9b226a31b7d8a33851977293bdad4c3a367e9a0f3570f218ca"
+    },
+    {
+      "path": "release/resources-01970/parts/part-035.txt",
+      "size": 2097152,
+      "sha256": "2f93b717f3ac92fc5b5b6e9cf3a427621ba054a2ba9ded177e62eb7564736444"
+    },
+    {
+      "path": "release/resources-01970/parts/part-036.txt",
+      "size": 2097152,
+      "sha256": "c7467432cc3eda253fc2aa8b9a2fbc7035edfce3500481a93338636b40ad941c"
+    },
+    {
+      "path": "release/resources-01970/parts/part-037.txt",
+      "size": 2097152,
+      "sha256": "b275a36f579aae9cf6f6842afe95b6a462eb4f771c9b63281d32a45f2151fbc0"
+    },
+    {
+      "path": "release/resources-01970/parts/part-038.txt",
+      "size": 1317585,
+      "sha256": "7a2cb692fac8c9b0eb313a92343e71da30e1531678ff5d547c7bb89f9ccbbb15"
+    }
+  ]
+}

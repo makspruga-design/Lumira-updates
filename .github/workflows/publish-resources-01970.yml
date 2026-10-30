@@ -1,0 +1,40 @@
+name: Verify and stage Lumira 0.19.70 art resources
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'release/resources-01970/**'
+      - 'tools/publish_resources.py'
+      - '.github/workflows/publish-resources-01970.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: lumira-public-release
+  cancel-in-progress: false
+jobs:
+  stage-resources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install cryptography
+      - name: Verify unchanged publisher and publish immutable non-latest resources
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: >-
+          python tools/publish_resources.py
+          --payload release/resources-01970/payload.json
+          --stage-tag v0.19.70-resources
+          --report resource-staging-receipt.json
+      - name: Retain publication receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumira-resource-staging-01970-receipt
+          path: resource-staging-receipt.json
+          if-no-files-found: ignore
