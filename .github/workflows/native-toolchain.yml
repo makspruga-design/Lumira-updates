@@ -26,6 +26,31 @@ jobs:
           chmod +x templates/linux_release.x86_64
           templates/linux_release.x86_64 --headless --version
           sha256sum templates/linux_release.x86_64 > templates/SHA256SUMS
+      - name: Recover published native update cache
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import urllib.request,json,base64,pathlib,hashlib,concurrent.futures
+          out=pathlib.Path('native01969');out.mkdir()
+          for platform in ['android','windows']:
+              url='https://github.com/makspruga-design/Lumira-updates/releases/download/v0.19.69/lumira-017-'+platform+'.json'
+              body=urllib.request.urlopen(url,timeout=60).read()
+              (out/('lumira-017-'+platform+'.json')).write_bytes(body)
+              doc=json.loads(base64.b64decode(json.loads(body)['payload']))
+              assert doc['version']=='0.19.69' and doc['version_code']==106
+          def get(pack):
+              b=urllib.request.urlopen(pack['url'],timeout=60).read()
+              assert len(b)==pack['size'] and hashlib.sha256(b).hexdigest()==pack['sha256']
+              (out/(pack['sha256']+'.zip')).write_bytes(b)
+          with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
+              list(pool.map(get,doc['packs']))
+          print('Verified',len(doc['packs']),'native resources')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native01969-cache
+          path: native01969/
+          retention-days: 7
       - uses: actions/upload-artifact@v4
         with:
           name: godot-4.3-linux-release
