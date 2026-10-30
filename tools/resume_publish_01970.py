@@ -19,6 +19,7 @@ import re
 import time
 import urllib.error
 import urllib.parse
+import urllib.request
 import zipfile
 
 import publish_resources as trusted
@@ -46,6 +47,12 @@ UPLOAD_URL = "https://uploads.github.com/repos/" + REPO + "/releases/" + str(REL
 RETRY_DELAYS = (1, 2, 4)
 MIN_UPLOAD_INTERVAL = 1.05
 MAX_RETRY_AFTER = 60
+INCOMPLETE_ASSET_ID = 692351833
+INCOMPLETE_ASSET_NAME = "4ab5df34d109516166e9f139568038d98376e12120e953974da6061c00755af3.zip"
+INCOMPLETE_ASSET_SIZE = 5469
+INCOMPLETE_ASSET_TIME = "2026-10-30T14:20:51Z"
+INCOMPLETE_ASSET_URL = API + "/releases/assets/" + str(INCOMPLETE_ASSET_ID)
+CLEANUP_RECEIPTS: list[dict] = []
 require = trusted.require
 sha = trusted.sha
 
@@ -184,6 +191,214 @@ def checked_latest(latest: dict, release_id: int) -> None:
             "Latest release changed unexpectedly; refusing to advance it")
 
 
+def _delete_placeholder_url(url: str) -> None:
+    """One authorized repository asset DELETE; no redirect, JSON or retry."""
+    require(re.fullmatch(re.escape(API + "/releases/assets/") + r"[1-9][0-9]*", url) is not None,
+            "Unexpected placeholder DELETE endpoint")
+    require(os.environ.get("GH_REPO") == REPO and bool(os.environ.get("GH_TOKEN")),
+            "Placeholder cleanup requires this public repository's workflow token")
+    request = urllib.request.Request(url, method="DELETE", headers={
+        "Authorization": "Bearer " + os.environ["GH_TOKEN"],
+        "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"})
+
+    class NoRedirect(urllib.request.HTTPRedirectHandler):
+        def redirect_request(self, req, fp, code, msg, headers, newurl):
+            raise ValueError("Unexpected placeholder DELETE redirect")
+
+    with urllib.request.build_opener(NoRedirect).open(request, timeout=120) as response:
+        require(response.status == 204, "Unexpected placeholder DELETE response; require readback")
+
+
+def delete_known_incomplete_placeholder() -> None:
+    _delete_placeholder_url(INCOMPLETE_ASSET_URL)
+
+
+def delete_current_attempt_placeholder(asset_id: int) -> None:
+    require(type(asset_id) is int and asset_id > 0 and asset_id != INCOMPLETE_ASSET_ID,
+            "Invalid current-attempt placeholder identity")
+    _delete_placeholder_url(API + "/releases/assets/" + str(asset_id))
+
+
+def read_asset_metadata(url: str, request, sleep):
+    def metadata_or_absent(method, url):
+        try:
+            return request(method, url)
+        except urllib.error.HTTPError as error:
+            if error.code == 404:
+                return None
+            raise
+    return read_request(url, metadata_or_absent, sleep)
+
+
+def read_known_placeholder(request, sleep):
+    return read_asset_metadata(INCOMPLETE_ASSET_URL, request, sleep)
+
+
+def cleanup_membership(request, sleep) -> dict:
+    rows_by_name, ids = {}, set()
+    for page in range(1, 5):
+        rows = read_request(ASSET_URL + "?per_page=100&page=" + str(page), request, sleep)
+        require(isinstance(rows, list) and len(rows) <= 100, "Malformed cleanup membership page")
+        for item in rows:
+            require(isinstance(item, dict) and isinstance(item.get("name"), str)
+                    and item["name"] not in rows_by_name and type(item.get("id")) is int
+                    and item["id"] > 0 and item["id"] not in ids,
+                    "Duplicate or invalid cleanup membership row")
+            rows_by_name[item["name"]] = item
+            ids.add(item["id"])
+        if len(rows) < 100:
+            return rows_by_name
+    raise ValueError("Cleanup membership exceeds the pinned release")
+
+
+def delete_once_confirm_absent(item: dict, *, origin: str, request, sleep, delete) -> dict:
+    receipt = {"origin": origin, "placeholder_id": item["id"], "asset_name": item["name"],
+               "created_at": item["created_at"], "cleanup_action": "delete_attempted_unconfirmed",
+               "delete_attempted": True, "delete_acknowledged_204": False,
+               "deleted_incomplete_placeholder_id": None,
+               "uploaded_assets_deleted_or_overwritten": False}
+    CLEANUP_RECEIPTS.append(receipt)
+    try:
+        delete()
+        receipt["delete_acknowledged_204"] = True
+        receipt["deleted_incomplete_placeholder_id"] = item["id"]
+    except (urllib.error.HTTPError, urllib.error.URLError, OSError, ValueError) as error:
+        receipt["delete_response_http_status"] = getattr(error, "code", None)
+        emit("placeholder_delete_response_uncertain", http_status=getattr(error, "code", None),
+             asset_id=item["id"])
+    # A lost response never authorizes another DELETE. GET 404 is the only
+    # accepted absence proof, including after an acknowledged 204.
+    receipt["absence_confirmed_by_asset_get_404"] = False
+    identity_fields = ("id", "name", "url", "size", "state", "digest",
+                       "created_at", "updated_at", "download_count")
+    for attempt in range(len(RETRY_DELAYS) + 1):
+        current = read_asset_metadata(item["url"], request, sleep)
+        if current is None:
+            receipt["absence_confirmed_by_asset_get_404"] = True
+            break
+        require(isinstance(current, dict) and current.get("state") == "starter"
+                and all(current.get(key) == item.get(key) for key in identity_fields),
+                "Placeholder changed after DELETE attempt; preserve it and stop without another DELETE")
+        if attempt < len(RETRY_DELAYS):
+            sleep(RETRY_DELAYS[attempt])
+    require(receipt["absence_confirmed_by_asset_get_404"],
+            "Placeholder absence was not confirmed after one DELETE; no second DELETE is allowed")
+    receipt["cleanup_action"] = ("removed_incomplete_placeholder" if receipt["delete_acknowledged_204"]
+                                 else "absence_confirmed_after_uncertain_delete")
+    emit("incomplete_placeholder_cleanup", **receipt)
+    return receipt
+
+
+def checked_placeholder_identity(item: dict, assets: dict[str, bytes]) -> None:
+    require(isinstance(item, dict) and type(item.get("id")) is int
+            and item["id"] == INCOMPLETE_ASSET_ID and item.get("name") == INCOMPLETE_ASSET_NAME
+            and type(item.get("size")) is int and item["size"] == INCOMPLETE_ASSET_SIZE
+            and item.get("url") == INCOMPLETE_ASSET_URL,
+            "Known incomplete placeholder identity differs; refuse cleanup")
+    body = assets.get(INCOMPLETE_ASSET_NAME)
+    require(body is not None and len(body) == INCOMPLETE_ASSET_SIZE
+            and sha(body) + ".zip" == INCOMPLETE_ASSET_NAME,
+            "Known placeholder does not match the pinned verified payload")
+
+
+def checked_incomplete_placeholder(item: dict, assets: dict[str, bytes]) -> None:
+    checked_placeholder_identity(item, assets)
+    require(item.get("state") == "starter" and item.get("digest") is None
+            and item.get("created_at") == INCOMPLETE_ASSET_TIME
+            and item.get("updated_at") == INCOMPLETE_ASSET_TIME
+            and type(item.get("download_count")) is int and item["download_count"] == 0,
+            "Known placeholder is not the exact untouched incomplete upload; refuse cleanup")
+
+
+def cleanup_known_placeholder(assets: dict[str, bytes], *, request, sleep,
+                              delete=delete_known_incomplete_placeholder) -> dict:
+    checked_release(read_request(RELEASE_URL, request, sleep), draft=True)
+    # The ordinary strict reader is unchanged. This separate preflight permits
+    # exactly one known incomplete row while validating every other asset.
+    rows_by_name = cleanup_membership(request, sleep)
+    others = {name: item for name, item in rows_by_name.items() if item["id"] != INCOMPLETE_ASSET_ID}
+    checked_assets(others, assets)
+    listed = next((item for item in rows_by_name.values() if item["id"] == INCOMPLETE_ASSET_ID), None)
+    current = read_known_placeholder(request, sleep)
+    base = {"origin": "known_original_failed_upload", "placeholder_id": INCOMPLETE_ASSET_ID, "delete_attempted": False,
+            "deleted_incomplete_placeholder_id": None, "uploaded_assets_deleted_or_overwritten": False}
+    if current is None:
+        return {**base, "cleanup_action": "already_absent", "absence_confirmed_by_asset_get_404": True}
+    require(listed is not None, "Known asset does not belong to the pinned draft; refuse cleanup")
+    checked_placeholder_identity(listed, assets)
+    checked_placeholder_identity(current, assets)
+    if current.get("state") == "uploaded":
+        checked_assets({INCOMPLETE_ASSET_NAME: current}, assets)
+        return {**base, "cleanup_action": "preserved_exact_uploaded_asset"}
+    checked_incomplete_placeholder(listed, assets)
+    checked_incomplete_placeholder(current, assets)
+    # Recheck state immediately before the single permitted destructive call.
+    checked_release(read_request(RELEASE_URL, request, sleep), draft=True)
+    current = read_known_placeholder(request, sleep)
+    if current is None:
+        return {**base, "cleanup_action": "already_absent", "absence_confirmed_by_asset_get_404": True}
+    checked_placeholder_identity(current, assets)
+    if current.get("state") == "uploaded":
+        checked_assets({INCOMPLETE_ASSET_NAME: current}, assets)
+        return {**base, "cleanup_action": "preserved_exact_uploaded_asset"}
+    checked_incomplete_placeholder(current, assets)
+    return delete_once_confirm_absent(current, origin=base["origin"], request=request, sleep=sleep, delete=delete)
+
+
+def cleanup_failed_attempt_placeholder(name: str, assets: dict[str, bytes], before: dict,
+                                        attempt_started: datetime.datetime, *, request, sleep,
+                                        delete=delete_current_attempt_placeholder) -> dict | None:
+    require(name in assets and name not in before, "Attempt asset existed before upload; refuse cleanup")
+    before_ids = {item["id"] for item in before.values()}
+    rows = cleanup_membership(request, sleep)
+    checked_assets({key: item for key, item in rows.items() if key != name}, assets)
+    listed = rows.get(name)
+    if listed is None:
+        return None
+    if listed.get("state") == "uploaded":
+        checked_assets({name: listed}, assets)
+        return None
+    require(type(listed.get("id")) is int and listed["id"] > 0
+            and listed["id"] not in before_ids and listed["id"] != INCOMPLETE_ASSET_ID,
+            "Failed-upload placeholder ID is not new to this attempt")
+    asset_id = listed["id"]
+    url = API + "/releases/assets/" + str(asset_id)
+
+    def checked_current(item):
+        require(isinstance(item, dict) and item.get("id") == asset_id and item.get("name") == name
+                and item.get("url") == url and type(item.get("size")) is int
+                and item["size"] == len(assets[name]), "Current-attempt placeholder identity differs")
+        if item.get("state") == "uploaded":
+            checked_assets({name: item}, assets)
+            return False
+        require(item.get("state") == "starter" and item.get("digest") is None
+                and type(item.get("download_count")) is int and item["download_count"] == 0,
+                "Current-attempt asset is not an untouched starter")
+        try:
+            created = datetime.datetime.strptime(item["created_at"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=datetime.timezone.utc)
+            updated = datetime.datetime.strptime(item["updated_at"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=datetime.timezone.utc)
+        except (KeyError, TypeError, ValueError) as error:
+            raise ValueError("Invalid current-attempt placeholder timestamp") from error
+        require(attempt_started <= created <= updated <= datetime.datetime.now(datetime.timezone.utc),
+                "Starter predates this upload attempt or has an invalid timestamp")
+        return True
+
+    require(checked_current(listed), "Unexpected current-attempt list state")
+    checked_release(read_request(RELEASE_URL, request, sleep), draft=True)
+    current = read_asset_metadata(url, request, sleep)
+    if current is None:
+        return {"origin": "current_failed_upload", "placeholder_id": asset_id,
+                "cleanup_action": "already_absent", "delete_attempted": False,
+                "absence_confirmed_by_asset_get_404": True}
+    if not checked_current(current):
+        return {"origin": "current_failed_upload", "placeholder_id": asset_id,
+                "cleanup_action": "preserved_exact_uploaded_asset", "delete_attempted": False}
+    receipt = delete_once_confirm_absent(current, origin="current_failed_upload", request=request,
+                                        sleep=sleep, delete=lambda: delete(asset_id))
+    receipt["attempt_started_at"] = attempt_started.strftime("%Y-%m-%dT%H:%M:%SZ")
+    return receipt
+
+
 def confirm_published_latest(request, sleep) -> dict:
     for attempt in range(len(RETRY_DELAYS) + 1):
         latest = read_request(API + "/releases/latest", request, sleep)
@@ -197,14 +412,22 @@ def confirm_published_latest(request, sleep) -> dict:
 
 
 def resume_release(assets: dict[str, bytes], *, request=trusted.github_request,
-                   sleep=time.sleep, clock=time.monotonic) -> dict:
+                   sleep=time.sleep, clock=time.monotonic,
+                   delete_placeholder=delete_known_incomplete_placeholder,
+                   delete_new_placeholder=delete_current_attempt_placeholder) -> dict:
     require(len(assets) == ASSET_COUNT and MANIFESTS <= set(assets), "Pinned release needs all 311 assets")
     release = read_request(RELEASE_URL, request, sleep)
     checked_release(release)
+    before = read_request(API + "/releases/latest", request, sleep)
+    cleanup = {"cleanup_action": "skipped_published_release", "delete_attempted": False,
+               "deleted_incomplete_placeholder_id": None, "uploaded_assets_deleted_or_overwritten": False}
+    if release["draft"]:
+        checked_latest(before, PREVIOUS_LATEST_ID)
+        cleanup = cleanup_known_placeholder(assets, request=request, sleep=sleep, delete=delete_placeholder)
     existing = read_assets(assets, request, sleep)
     initial_count = len(existing)
-    before = read_request(API + "/releases/latest", request, sleep)
     uploaded = recovered = retries = 0
+    attempt_cleanups = []
     if release["draft"] is False:
         require(set(existing) == set(assets), "Published release is incomplete and immutable")
         checked_latest(before, RELEASE_ID)
@@ -219,6 +442,8 @@ def resume_release(assets: dict[str, bytes], *, request=trusted.github_request,
                 if last_upload is not None:
                     sleep(max(0.0, MIN_UPLOAD_INTERVAL - (clock() - last_upload)))
                 last_upload = clock()
+                attempt_started = datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0)
+                before_attempt = dict(existing)
                 try:
                     result = request("POST", UPLOAD_URL + "?name=" + urllib.parse.quote(name, safe=""), body, True)
                 except (urllib.error.HTTPError, urllib.error.URLError) as error:
@@ -234,6 +459,11 @@ def resume_release(assets: dict[str, bytes], *, request=trusted.github_request,
                              delay_seconds=server_pause)
                         sleep(server_pause)
                     checked_release(read_request(RELEASE_URL, request, sleep), draft=True)
+                    attempt_cleanup = cleanup_failed_attempt_placeholder(
+                        name, assets, before_attempt, attempt_started, request=request, sleep=sleep,
+                        delete=delete_new_placeholder)
+                    if attempt_cleanup is not None:
+                        attempt_cleanups.append(attempt_cleanup)
                     existing = read_assets(assets, request, sleep)
                     if name in existing:
                         recovered += 1
@@ -276,12 +506,16 @@ def resume_release(assets: dict[str, bytes], *, request=trusted.github_request,
             "uploads_observed_after_error": recovered, "upload_retries": retries,
             "asset_metadata_sha256": sha(json.dumps(metadata, sort_keys=True, separators=(",", ":")).encode()),
             "remote_asset_verification": "GitHub SHA256 digest, size, name and uploaded state",
-            "latest_release_id_before": before["id"], "latest_release_id_after": after["id"]}
+            "latest_release_id_before": before["id"], "latest_release_id_after": after["id"],
+            "incomplete_placeholder_cleanup": cleanup,
+            "deleted_incomplete_placeholder_id": cleanup["deleted_incomplete_placeholder_id"],
+            "current_attempt_placeholder_cleanups": attempt_cleanups}
 
 
 def execute(payload_path: Path, *, verify_only: bool = False,
             verifier=trusted.verify_with_unchanged_publisher, request=trusted.github_request,
             sleep=time.sleep, clock=time.monotonic) -> dict:
+    CLEANUP_RECEIPTS.clear()
     expected = Path.cwd().resolve() / "release/payload.json"
     require(payload_path.resolve() == expected and not payload_path.is_symlink(),
             "Use the assembled release/payload.json in this public checkout")
@@ -305,7 +539,7 @@ def execute(payload_path: Path, *, verify_only: bool = False,
             "verifier_sha256": VERIFIER_SHA256, "public_key_sha256": PUBLIC_KEY_SHA256,
             "verifier_helper_sha256": VERIFIER_HELPER_SHA256,
             "original_publisher_changed": False, "release_created": False,
-            "assets_deleted_or_overwritten": False}
+            "uploaded_assets_deleted_or_overwritten": False}
 
 
 def main() -> None:
@@ -319,7 +553,8 @@ def main() -> None:
     except Exception as error:
         report = {"status": "failed", "release_id": RELEASE_ID, "tag": TAG,
                   "payload_sha256": PAYLOAD_SHA256, "archive_sha256": ARCHIVE_SHA256,
-                  "error": safe_error(error)}
+                  "error": safe_error(error), "placeholder_cleanup_receipts": CLEANUP_RECEIPTS,
+                  "uploaded_assets_deleted_or_overwritten": False}
         args.report.write_text(json.dumps(report, indent=2) + "\n")
         emit("recovery_failed", **report)
         raise SystemExit(1) from None
