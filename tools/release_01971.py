@@ -17,12 +17,12 @@ def sha(b):return hashlib.sha256(b).hexdigest()
 def get(url,limit):
  with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'Lumeria-0.19.71-verifier'}),timeout=90) as r:b=r.read(limit+1)
  assert len(b)<=limit;return b
-def api(path,body=None):
+def api(path,body=None,method=None):
  headers={'Accept':'application/vnd.github+json','User-Agent':'Lumeria-0.19.71-verifier'}
  if os.environ.get('GH_TOKEN'):headers['Authorization']='Bearer '+os.environ['GH_TOKEN']
  data=None if body is None else json.dumps(body).encode()
  if body is not None:headers['Content-Type']='application/json'
- with urllib.request.urlopen(urllib.request.Request(API+path,data=data,headers=headers,method='GET' if body is None else 'PATCH'),timeout=90) as r:return json.load(r)
+ with urllib.request.urlopen(urllib.request.Request(API+path,data=data,headers=headers,method=method or ('GET' if body is None else 'PATCH')),timeout=90) as r:return json.load(r)
 def envelope(raw,platform):
  e=json.loads(raw);b=base64.b64decode(e['payload'],validate=True);load_pem_public_key(Path('update-public.pem').read_bytes()).verify(base64.b64decode(e['signature'],validate=True),b,padding.PKCS1v15(),hashes.SHA256());d=json.loads(b)
  assert d['protocol']==1 and d['native_id']=='lumira-017' and d['engine']=='4.3' and d['platform']==platform
@@ -85,11 +85,33 @@ def verify():
    if attempt==3:raise AssertionError('Latest route stale: '+n)
    time.sleep(2**attempt)
   platform='android' if 'android' in n else 'windows';envelope(actual,platform)
- # Explain test-release scope; no manifest bytes or signature is changed.
- note='\n\nTest release. Windows requires native017 updater repair-r1; the original Windows ZIP loader is not compatible with this cumulative pack count. Exact repair-r1 Windows GL upgrade/rollback/restart passed. Android exact-base/device gameplay has not been tested; this is an owner-requested test update. Web is not part of this release. Back up saves before manual testing.'
- api('/releases/'+str(latest['id']),{'body':documents['windows']['notes']+note})
+ assert 'Windows requires native017 updater repair-r1' in latest.get('body',''), 'Missing loader compatibility warning'
  receipt={'status':'verified_published','version':'0.19.71','code':108,'source_commit':SOURCE,'releases':results,'latest_release_id':latest['id'],'latest_routes_exact':True,'cumulative_packs':1487,'cumulative_zip_bytes':188356129,'android_device_test':'NOT_RUN','windows_requirement':'repair-r1'}
  Path('publication-01971.json').write_text(json.dumps(receipt,indent=2)+'\n');print(json.dumps(receipt),flush=True)
+def final_draft():
+ wrapper=json.loads(Path('release/payload.json').read_text());b=base64.b64decode(wrapper['archive_base64'],validate=True);assert sha(b)==ROWS[1][3];docs=inspect(b,'final')
+ stage=api('/releases/tags/v0.19.71-resources');assert not stage['draft'] and stage['prerelease']
+ entries=[]
+ for page in range(1,4):
+  batch=api('/releases/'+str(stage['id'])+'/assets?per_page=100&page='+str(page));entries+=batch
+  if len(batch)<100:break
+ assert len(entries)==194 and all(re.fullmatch('[0-9a-f]{64}\\.zip',x['name']) and x['state']=='uploaded' for x in entries)
+ latest=api('/releases/latest');assert latest['tag_name']=='v0.19.70', 'Unexpected live release; stop for reconciliation'
+ marker='Signed final archive SHA256: '+ROWS[1][3]
+ try:existing=api('/releases/tags/v0.19.71')
+ except urllib.error.HTTPError as e:
+  if e.code!=404:raise
+  existing=None
+ if existing is not None:
+  assert existing['draft'] and marker in existing.get('body',''), 'Foreign or already published .71; stop'
+  print('Existing matching draft retained');return
+ note='\n\nTEST RELEASE. Windows requires native017 updater repair-r1. The original Windows ZIP loader is not compatible with this cumulative pack count. Exact repair-r1 Windows GL pending/active/rollback/restart passed; the owner-installed loader version is not confirmed. Android exact-base/device QA has not run; the owner requested this test update. Web is not included. Preserve a backup of saves before testing.\n\nSource: '+SOURCE+'\n'+marker
+ created=api('/releases',{'tag_name':'v0.19.71','target_commitish':'main','name':'Lumira 0.19.71 — native test update','body':docs['windows']['notes']+note,'draft':True,'prerelease':False,'make_latest':'false'},'POST')
+ assert created['draft'] and marker in created['body']
+ print('Compatibility warning present in private draft before activation',created['id'],flush=True)
+
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('mode',choices=['prepare','verify']);p.add_argument('--local-archives',type=Path);a=p.parse_args()
- prepare(a.local_archives) if a.mode=='prepare' else verify()
+ p=argparse.ArgumentParser();p.add_argument('mode',choices=['prepare','verify','final-draft']);p.add_argument('--local-archives',type=Path);a=p.parse_args()
+ if a.mode=='prepare':prepare(a.local_archives)
+ elif a.mode=='final-draft':final_draft()
+ else:verify()
