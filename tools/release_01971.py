@@ -110,8 +110,31 @@ def final_draft():
  assert created['draft'] and marker in created['body']
  print('Compatibility warning present in private draft before activation',created['id'],flush=True)
 
+def notice():
+ wrapper=json.loads(Path('release/payload.json').read_text());b=base64.b64decode(wrapper['archive_base64'],validate=True);assert sha(b)==ROWS[1][3];docs=inspect(b,'final')
+ with zipfile.ZipFile(io.BytesIO(b)) as z:expected={n:(len(z.read(n)),sha(z.read(n))) for n in z.namelist()}
+ releases=api('/releases?per_page=20');candidates=[]
+ for rel in releases:
+  if rel['tag_name']!='v0.19.71':continue
+  entries=[]
+  for page in range(1,12):
+   batch=api('/releases/'+str(rel['id'])+'/assets?per_page=100&page='+str(page));entries+=batch
+   if len(batch)<100:break
+  if not entries:continue
+  assert len({x['name'] for x in entries})==len(entries)
+  for x in entries:assert x['name'] in expected and x['state']=='uploaded' and (x['size'],x['digest'])==(expected[x['name']][0],'sha256:'+expected[x['name']][1]), 'Draft asset differs from signed archive'
+  candidates.append(rel)
+ assert len(candidates)==1, 'Ambiguous nonempty .71 release'
+ rel=candidates[0]
+ text=docs['windows']['notes']+'\n\nTEST RELEASE. Windows requires native017 updater repair-r1. The original Windows ZIP loader is not compatible with this cumulative pack count. Exact repair-r1 Windows GL upgrade/rollback/restart passed; the installed loader on the owner PC is not confirmed. Android exact-base/device QA has not run; the owner requested this test update. Web is not included. Preserve a backup of saves before testing.\n\nSource: '+SOURCE+'\nSigned final archive SHA256: '+ROWS[1][3]
+ before=api('/releases/latest');updated=api('/releases/'+str(rel['id']),{'body':text});assert updated['body']==text
+ after=api('/releases/latest')
+ Path('notice-01971.json').write_text(json.dumps({'release_id':rel['id'],'body_verified':True,'release_flags_not_modified':True,'before_latest':before['tag_name'],'after_latest':after['tag_name']},indent=2)+'\n')
+ print('Compatibility notice attached to verified nonempty .71 release',rel['id'],flush=True)
+
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('mode',choices=['prepare','verify','final-draft']);p.add_argument('--local-archives',type=Path);a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('mode',choices=['prepare','verify','final-draft','notice']);p.add_argument('--local-archives',type=Path);a=p.parse_args()
  if a.mode=='prepare':prepare(a.local_archives)
  elif a.mode=='final-draft':final_draft()
+ elif a.mode=='notice':notice()
  else:verify()

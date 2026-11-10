@@ -1,0 +1,29 @@
+name: Attach compatibility notice to verified 0.19.71 draft
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/notice-01971.yml']
+permissions:
+  contents: write
+concurrency:
+  group: lumira-01971-compatibility-notice
+  cancel-in-progress: false
+jobs:
+  notice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install cryptography
+      - run: python tools/release_01971.py prepare
+      - name: Verify existing asset subset and update body only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python tools/release_01971.py notice
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumira-01971-compatibility-notice
+          path: notice-01971.json
