@@ -1,0 +1,33 @@
+{
+  "status": "QA_ONLY_NOT_LIVE",
+  "source_commit": "af81b027961b99dd47d004319de193216df4935e",
+  "version": "0.19.71",
+  "version_code": 108,
+  "baseline": "0.19.70 / code107 / native017 Godot4.3",
+  "windows_requires": "Exact repair-r1; original Windows loader has known ZIP handle limit",
+  "device_acceptance": "NOT_RUN",
+  "archives": [
+    {
+      "role": "stage",
+      "file": "Lumeria-0.19.71-QA-resources.zip",
+      "size": 57908170,
+      "sha256": "03e0eca653e535cbbb98cd4dcc8d2215260e1c0c92f63238b4b7918b005f8e18",
+      "git_blob": "fa7768fe823dbbe5cd4456ca953b62009cd981fe"
+    },
+    {
+      "role": "final",
+      "file": "Lumeria-0.19.71-QA-final.zip",
+      "size": 37544413,
+      "sha256": "c180854935d84646e9170a26f375bd93776e00b9f791e060a9d7a8a5fc2fa727",
+      "git_blob": "01b3841e833ee71263f5c2d360fb955672fc4c3c"
+    }
+  ],
+  "instructions": [
+    "Download both ZIP files and verify hashes.",
+    "Extract hashed resource ZIPs from both archives into a NEW isolated test cache alongside the verified .70 cumulative packs.",
+    "Use ONLY lumira-017-windows.json from the FINAL archive for the candidate; stage manifest is artwork transport only.",
+    "Do not replace installed AppData, saves, live feed, or the stable release.",
+    "Test exact repair-r1 EXE/PCK, pending to active, restart, deliberate abandoned trial rollback to signed .70, and sentinel save preservation.",
+    "Android document signature is valid, but Android base/device QA is NOT_RUN."
+  ]
+}
