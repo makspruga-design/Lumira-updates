@@ -1,0 +1,35 @@
+name: Verify and stage Lumira 0.19.71 resources
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/stage-resources-01971.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: lumira-public-release
+  cancel-in-progress: false
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install cryptography
+      - name: Verify pinned signed archives and unchanged trust inputs
+        run: python tools/release_01971.py prepare
+      - name: Publish resource ZIPs only; preserve latest
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: python tools/publish_resources.py --payload release/resources-01971/payload.json --stage-tag v0.19.71-resources --report resource-staging-01971.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumira-resources-01971-receipt
+          path: resource-staging-01971.json
+          if-no-files-found: ignore
